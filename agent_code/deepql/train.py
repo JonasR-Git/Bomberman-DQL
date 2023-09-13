@@ -2,29 +2,34 @@ import numpy as np
 from collections import deque
 from .rewards import reward_from_events
 from .agent import DQNAgent
+import os
 import tensorflow as tf
 import random
 
-print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 
 class Training:
 
     def __init__(self, state_size, action_size):
         self.agent = DQNAgent(state_size, action_size)
-        self.experience_buffer = deque(maxlen=10000)
         self.episode_counter = 0
-        self.total_episodes = 20000  # specify the total number of episodes
         self.game_score = 0
         self.game_score_arr = []
+        self.highest_score = -np.inf
+        self.losses = []
 
     def remember(self, state, action, reward, next_state, done):
-        self.experience_buffer.append((state, action, reward, next_state, done))
+        self.agent.remember(state, action, reward, next_state, done)
 
     def replay(self, batch_size):
-        minibatch = random.sample(self.experience_buffer, min(len(self.experience_buffer), batch_size))
-        for state, action, reward, next_state, done in minibatch:
-            self.agent.remember(state, action, reward, next_state, done)
-        self.agent.replay(batch_size)
+        history = self.agent.replay(batch_size)
+        
+        # Store the model's loss after training
+        if history is not None:
+            self.losses.append(history.history['loss'][0])
+        else:
+            print("Warning: History object is None")
+
+        return history
 
     def setup_training(self):
         pass
@@ -40,19 +45,48 @@ class Training:
         self.remember(state, action, reward, next_state, done)
 
     def end_of_round(self, last_game_state, last_action, events):
-        if len(self.experience_buffer) > 100:
-            self.replay(32)
+            # Get reward from the current round
+        round_reward = reward_from_events(self, events)
+        
+        # Update the game score for this episode
+        self.game_score += round_reward
+        
+        # If the episode has finished
+        self.game_score_arr.append(self.game_score)
+        print("EPISODE ENDED:")
+        print("Total Score:", self.game_score)
+        self.highest_score = max(self.game_score, self.highest_score)
+        self.game_score = 0   # Reset game_score for the next episode
+
+        if len(self.agent.memory) > 512:  
+            batch_size = min(len(self.agent.memory), 256)  
+            self.replay(batch_size)
+            print("--------------------------")
+            print("TRAINING STARTED!!!")
+            print("--------------------------")
         
         # update episode counter and game score
         self.episode_counter += 1
-        self.game_score += reward_from_events(self, events)
-        self.game_score_arr.append(self.game_score)
-        
+
+        print(self.episode_counter)
+        print(len(self.agent.memory))
         # save network parameters and game scores periodically
-        if self.episode_counter % (self.total_episodes // 100) == 0:
+        if self.episode_counter % 200 == 0:
+            if not os.path.exists('network_parameters'):
+                os.makedirs('network_parameters')
             self.save_parameters('last_save')
             self.save_parameters(f'save_after_{self.episode_counter}_iterations')
-            np.savetxt(f'game_score_{self.episode_counter}.txt', self.game_score_arr)
+
+        if self.episode_counter % 100 == 0:
+            # After every 100 episodes, print statistics
+            average_score = sum(self.game_score_arr[-100:]) / 100 if len(self.game_score_arr) > 100 else np.mean(self.game_score_arr)
+            average_loss = np.mean(self.losses[-100:])
+            print(f"--- After {self.episode_counter} episodes ---")
+            print(f"Average Score over the last 100 episodes: {average_score:.2f}")
+            print(f"Average Loss over the last 100 episodes: {average_loss:.2f}")
+            print(f"Highest Score so far: {self.highest_score:.2f}")
+            print(f"Current Epsilon: {self.agent.epsilon:.4f}")
+            print("------------------------------------------")
             
     def save_parameters(self, filename):
         self.agent.model.save(os.path.join('network_parameters', f'{filename}.h5'))
