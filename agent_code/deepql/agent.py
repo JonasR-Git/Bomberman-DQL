@@ -215,7 +215,8 @@ class DQNAgent:
             return random.choice(ACTIONS)
         act_values = self.model.predict(state.reshape(1, -1), verbose=0)
         max_val = np.max(act_values)
-        best_actions = [action for action, q_val in zip(ACTIONS, act_values) if q_val == max_val]
+        act_values2 = act_values.flatten()
+        best_actions = [action for action, q_val in zip(ACTIONS, act_values2) if q_val == max_val]
         
         return random.choice(best_actions)
 
