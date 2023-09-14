@@ -78,6 +78,10 @@ class SegmentTree:
         # Otherwise, search in the right subtree with adjusted s
         else:
             return self.retrieve(s - self.tree[2 * node], 2 * node + 1, mid + 1, end)
+        
+    def __len__(self):
+        return self.capacity
+
             
 class PrioritizedReplayBuffer:
     def __init__(self, size, alpha):
@@ -98,8 +102,8 @@ class PrioritizedReplayBuffer:
         if len(self.data) >= self.buffer_capacity:
             self.data.pop(0)
         self.data.append(data)
-        self.sum_tree.append(0.0)
-        self.min_tree.append(float('inf'))
+        self.sum_tree.append(data, self.max_priority)  # set to max_priority
+        self.min_tree.append(data, self.max_priority)  # optionally, set to max_priority here as well
         self.tree_ptr = (self.tree_ptr + 1) % len(self.sum_tree)
         return idx
 
@@ -107,6 +111,7 @@ class PrioritizedReplayBuffer:
         assert len(idxes) == len(priorities)
         for idx, priority in zip(idxes, priorities):
             assert 0 <= idx < len(self.data)
+            self.max_priority = max(self.max_priority, priority)
             self.sum_tree[idx] = priority ** self.alpha
             self.min_tree[idx] = priority ** self.alpha
 
@@ -149,6 +154,9 @@ class PrioritizedReplayBuffer:
         idx, p = self.sum_tree.retrieve(s)
         data = self.data[idx]
         return idx, p, data
+            
+    def __len__(self):
+        return len(self.data) 
 
 class DQNAgent:
     def __init__(self, state_size, action_size):
@@ -176,25 +184,15 @@ class DQNAgent:
         model = Sequential()
         
         # Input Layer
-        model.add(Dense(512, input_dim=self.state_size))
+        model.add(Dense(256, input_dim=self.state_size, activation='relu'))
         model.add(BatchNormalization())
         model.add(Activation('relu'))
-        model.add(Dropout(0.3))
+        model.add(Dropout(0.2))
         
         # Hidden Layer 1
-        model.add(Dense(256, activation='relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.3))
-        
-        # Hidden Layer 2
         model.add(Dense(128, activation='relu'))
         model.add(BatchNormalization())
-        model.add(Dropout(0.3))
-        
-        # Hidden Layer 3
-        model.add(Dense(64, activation='relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.3))
+        model.add(Dropout(0.2))
         
         # Output Layer
         model.add(Dense(self.action_size, activation='linear'))
@@ -210,42 +208,53 @@ class DQNAgent:
         self.memory.add((preprocessed_state, action_index, reward, preprocessed_next_state, done))
 
     def act(self, state):
+        # Decay epsilon after taking an action
+        if self.epsilon > self.epsilon_min:
+            self.epsilon *= self.epsilon_decay
         if np.random.rand() <= self.epsilon:
             return random.choice(ACTIONS)
-        act_values = self.model.predict(state)
-        return ACTIONS[np.argmax(act_values[0])]
+        act_values = self.model.predict(state.reshape(1, -1), verbose=0)
+        max_val = np.max(act_values)
+        best_actions = [action for action, q_val in zip(ACTIONS, act_values) if q_val == max_val]
+        
+        return random.choice(best_actions)
 
+    def decay_epsilon(self):
+        if self.epsilon > self.epsilon_min:
+            self.epsilon *= self.epsilon_decay
         
     def replay(self, batch_size, beta=0.4):
-        if len(self.memory) < batch_size:
+        if len(self.memory.data) < batch_size:
             return
         minibatch, indices, weights = self.memory.sample(batch_size, beta)
         states, targets_f = [], []
         for idx, (state, action, reward, next_state, done) in enumerate(minibatch):
             target = reward
             if not done:
-                target = (reward + self.gamma * np.amax(self.model.predict(next_state.reshape(1, -1))[0]))
-            target_f = self.model.predict(state.reshape(1, -1))
+                target = (reward + self.gamma * np.amax(self.model.predict(next_state.reshape(1, -1), verbose=0)[0]))
+            target_f = self.model.predict(state.reshape(1, -1), verbose=0)
             
             # Get the TD error and update priority
             old_val = target_f[0][action]
-            td_error = abs(old_val - target)
+            td_error = np.clip(abs(old_val - target), -1, 1) + 1e-5
             self.memory.update_priorities([indices[idx]], [td_error])
     
             target_f[0][action] = target
+            target_f[0][action] *= weights[idx]  # Weighting the TD error with the importance sampling weight
             states.append(state.reshape(1, -1))
             targets_f.append(target_f[0])
 
         self.replay_counter += 1
         states = np.vstack(states)
         lr_scheduler = LearningRateScheduler(self.lr_schedule)
-        return self.model.fit(states, np.array(targets_f), epochs=1, verbose=0, callbacks=[lr_scheduler])
+        
+        return self.model.fit(states, np.array(targets_f), epochs=3, verbose=0, callbacks=[lr_scheduler])
 
     def lr_schedule(self, epoch):
         # You can adjust the schedule as you see fit.
-        if self.replay_counter > 1000:
+        if self.replay_counter > 10000:
             return self.learning_rate * 0.1
-        elif self.replay_counter > 500:
+        elif self.replay_counter > 5000:
             return self.learning_rate * 0.5
         return self.learning_rate
 

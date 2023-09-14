@@ -1,0 +1,36 @@
+--- After 30 episodes ---
+Average Score over the last 100 episodes: -714.47
+Average Loss over the last 100 episodes: nan
+Highest Score so far: -605.00
+Current Epsilon: 0.8604
+------------------------------------------
+--- After 60 episodes ---
+Average Score over the last 100 episodes: -716.10
+Average Loss over the last 100 episodes: 331.71
+Highest Score so far: -605.00
+Current Epsilon: 0.7403
+------------------------------------------
+--- After 90 episodes ---
+Average Score over the last 100 episodes: -718.18
+Average Loss over the last 100 episodes: 315.63
+Highest Score so far: -580.00
+Current Epsilon: 0.6369
+------------------------------------------
+--- After 120 episodes ---
+Average Score over the last 100 episodes: -716.72
+Average Loss over the last 100 episodes: 1162.30
+Highest Score so far: -575.00
+Current Epsilon: 0.5480
+------------------------------------------
+--- After 150 episodes ---
+Average Score over the last 100 episodes: -717.87
+Average Loss over the last 100 episodes: 2627.01
+Highest Score so far: -575.00
+Current Epsilon: 0.4715
+------------------------------------------
+--- After 180 episodes ---
+Average Score over the last 100 episodes: -720.14
+Average Loss over the last 100 episodes: 13573.41
+Highest Score so far: -575.00
+Current Epsilon: 0.4057
+------------------------------------------

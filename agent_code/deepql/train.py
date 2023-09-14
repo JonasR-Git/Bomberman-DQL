@@ -5,6 +5,8 @@ from .agent import DQNAgent
 import os
 import tensorflow as tf
 import random
+import matplotlib.pyplot as plt
+from .preprocess import preprocess
 
 
 class Training:
@@ -45,7 +47,9 @@ class Training:
         self.remember(state, action, reward, next_state, done)
 
     def end_of_round(self, last_game_state, last_action, events):
-            # Get reward from the current round
+        self.agent.decay_epsilon()
+
+        # Get reward from the current round
         round_reward = reward_from_events(self, events)
         
         # Update the game score for this episode
@@ -53,23 +57,15 @@ class Training:
         
         # If the episode has finished
         self.game_score_arr.append(self.game_score)
-        print("EPISODE ENDED:")
-        print("Total Score:", self.game_score)
         self.highest_score = max(self.game_score, self.highest_score)
         self.game_score = 0   # Reset game_score for the next episode
 
         if len(self.agent.memory) > 512:  
             batch_size = min(len(self.agent.memory), 256)  
             self.replay(batch_size)
-            print("--------------------------")
-            print("TRAINING STARTED!!!")
-            print("--------------------------")
         
         # update episode counter and game score
         self.episode_counter += 1
-
-        print(self.episode_counter)
-        print(len(self.agent.memory))
         # save network parameters and game scores periodically
         if self.episode_counter % 200 == 0:
             if not os.path.exists('network_parameters'):
@@ -77,23 +73,35 @@ class Training:
             self.save_parameters('last_save')
             self.save_parameters(f'save_after_{self.episode_counter}_iterations')
 
-        if self.episode_counter % 100 == 0:
-            # After every 100 episodes, print statistics
-            average_score = sum(self.game_score_arr[-100:]) / 100 if len(self.game_score_arr) > 100 else np.mean(self.game_score_arr)
-            average_loss = np.mean(self.losses[-100:])
-            print(f"--- After {self.episode_counter} episodes ---")
-            print(f"Average Score over the last 100 episodes: {average_score:.2f}")
-            print(f"Average Loss over the last 100 episodes: {average_loss:.2f}")
-            print(f"Highest Score so far: {self.highest_score:.2f}")
-            print(f"Current Epsilon: {self.agent.epsilon:.4f}")
-            print("------------------------------------------")
+        if self.episode_counter % 30 == 0:
+            print("Stats saved")
+            self.write_stats_to_file()  # Write stats to file
+            self.plot_scores()  # Plot the scores
             
     def save_parameters(self, filename):
         self.agent.model.save(os.path.join('network_parameters', f'{filename}.h5'))
 
+    def write_stats_to_file(self, filename="training_stats.txt"):
+        with open(filename, "a") as f:  # "a" means append mode, so you won't overwrite previous stats
+            f.write(f"--- After {self.episode_counter} episodes ---\n")
+            average_score = sum(self.game_score_arr[-100:]) / 100 if len(self.game_score_arr) > 100 else np.mean(self.game_score_arr)
+            average_loss = np.mean(self.losses[-100:])
+            f.write(f"Average Score over the last 100 episodes: {average_score:.2f}\n")
+            f.write(f"Average Loss over the last 100 episodes: {average_loss:.2f}\n")
+            f.write(f"Highest Score so far: {self.highest_score:.2f}\n")
+            f.write(f"Current Epsilon: {self.agent.epsilon:.4f}\n")
+            f.write("------------------------------------------\n")
+
+    def plot_scores(self):
+        plt.figure(figsize=(10,5))
+        plt.plot(self.game_score_arr, label="Scores over Episodes")
+        plt.xlabel("Episodes")
+        plt.ylabel("Score")
+        plt.legend()
+        plt.savefig("scores_plot.png")  # Save the figure
 
 # Initialize training
-training = Training(1183, 6)  # You need to specify the state and action sizes
+training = Training(1472, 6)  # You need to specify the state and action sizes
 
 def setup_training(self):
     training.setup_training()
