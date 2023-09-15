@@ -8,6 +8,7 @@ import random
 import matplotlib.pyplot as plt
 from .preprocess import preprocess
 
+print(tf.test.is_built_with_cuda())
 
 class Training:
 
@@ -18,9 +19,17 @@ class Training:
         self.game_score_arr = []
         self.highest_score = -np.inf
         self.losses = []
+        self.moves_last_50_games = deque(maxlen=50)
+        self.current_moves_counter = 0
+        self.coins_collected = 0
+        self.coins_collected_round = deque(maxlen=30)
+        self.invalid_moves = 0
+        self.invalid_moves_last_50_games = deque(maxlen=50)
+        self.bombs_placed = 0
+        self.bombs_placed_last_50_games = deque(maxlen=50)
 
-    def remember(self, state, action, reward, next_state, done):
-        self.agent.remember(state, action, reward, next_state, done)
+    def remember(self, state, action, reward, next_state):
+        self.agent.remember(state, action, reward, next_state)
 
     def replay(self, batch_size):
         history = self.agent.replay(batch_size)
@@ -37,60 +46,76 @@ class Training:
         pass
 
     def game_events_occurred(self, old_game_state, self_action, new_game_state, events):
-        # collect training data and fill experience buffer
-        state = old_game_state
-        next_state = new_game_state
-        action = self_action
+        # Reward management
         reward = reward_from_events(self, events)
-        done = False
+        self.game_score += reward
+        if "COIN_COLLECTED" in events:
+            self.coins_collected += 1
 
-        self.remember(state, action, reward, next_state, done)
+        if "INVALID_ACTION" in events:
+            self.invalid_moves += 1
+        if "BOMB_DROPPED" in events:
+            self.bombs_placed += 1
+
+        # Remember this step
+        self.remember(old_game_state, self_action, reward, new_game_state)
+        self.current_moves_counter += 1
 
     def end_of_round(self, last_game_state, last_action, events):
+        self.coins_collected_round.append(self.coins_collected)
+        self.coins_collected = 0
         self.agent.decay_epsilon()
-
-        # Get reward from the current round
-        round_reward = reward_from_events(self, events)
+        self.moves_last_50_games.append(self.current_moves_counter)
+        self.current_moves_counter = 0
+        self.invalid_moves_last_50_games.append(self.invalid_moves)
+        self.invalid_moves = 0
+        self.bombs_placed_last_50_games.append(self.bombs_placed)
+        self.bombs_placed = 0
         
-        # Update the game score for this episode
-        self.game_score += round_reward
-        
-        # If the episode has finished
+        # Reset game score for the next episode
         self.game_score_arr.append(self.game_score)
         self.highest_score = max(self.game_score, self.highest_score)
-        self.game_score = 0   # Reset game_score for the next episode
+        self.game_score = 0
 
-        if len(self.agent.memory) > 512:  
-            batch_size = min(len(self.agent.memory), 256)  
-            self.replay(batch_size)
+        # Train the agent if memory is sufficiently populated
+        if len(self.agent.memory) >= 256:
+            self.replay(256)
         
-        # update episode counter and game score
+        # Update episode counter
         self.episode_counter += 1
-        # save network parameters and game scores periodically
-        if self.episode_counter % 200 == 0:
+        
+        # Save agent's state periodically
+        if (self.episode_counter - 100) % 200 == 0:
             if not os.path.exists('network_parameters'):
                 os.makedirs('network_parameters')
             self.save_parameters('last_save')
             self.save_parameters(f'save_after_{self.episode_counter}_iterations')
 
-        if self.episode_counter % 30 == 0:
+        if self.episode_counter % 20 == 0:
             print("Stats saved")
-            self.write_stats_to_file()  # Write stats to file
-            self.plot_scores()  # Plot the scores
-            
+            self.write_stats_to_file()
+            self.plot_scores()
+
     def save_parameters(self, filename):
         self.agent.model.save(os.path.join('network_parameters', f'{filename}.h5'))
 
     def write_stats_to_file(self, filename="training_stats.txt"):
-        with open(filename, "a") as f:  # "a" means append mode, so you won't overwrite previous stats
-            f.write(f"--- After {self.episode_counter} episodes ---\n")
-            average_score = sum(self.game_score_arr[-100:]) / 100 if len(self.game_score_arr) > 100 else np.mean(self.game_score_arr)
+        with open(filename, "a") as f: 
+            average_score = np.mean(self.game_score_arr[-100:])
             average_loss = np.mean(self.losses[-100:])
+            average_moves_last_50 = np.mean(self.moves_last_50_games)
+            f.write(f"--- After {self.episode_counter} episodes ---\n")
             f.write(f"Average Score over the last 100 episodes: {average_score:.2f}\n")
             f.write(f"Average Loss over the last 100 episodes: {average_loss:.2f}\n")
             f.write(f"Highest Score so far: {self.highest_score:.2f}\n")
             f.write(f"Current Epsilon: {self.agent.epsilon:.4f}\n")
+            f.write(f"Average Moves over the last 50 games: {average_moves_last_50:.2f}\n")
             f.write("------------------------------------------\n")
+
+        with open("scores.txt", "a") as f: 
+            for i in range(-30, 0):
+                if i >= -len(self.game_score_arr): 
+                    f.write(f"Episode: {self.episode_counter + i + 1}, Score: {self.game_score_arr[i]}, Steps: {self.moves_last_50_games[i]}, Coins: {self.coins_collected_round[i]}, Invalid Moves: {self.invalid_moves_last_50_games[i]}, Bombs Dropped: {self.bombs_placed_last_50_games[i]}\n")
 
     def plot_scores(self):
         plt.figure(figsize=(10,5))

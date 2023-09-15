@@ -4,6 +4,9 @@ import operator
 import bisect
 from collections import deque
 from .preprocess import preprocess
+import tensorflow as tf
+import matplotlib.pyplot as plt
+import keras
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activation
 from tensorflow.keras.optimizers import Adam
@@ -20,6 +23,7 @@ class SegmentTree:
         self.tree = [neutral_element for _ in range(2 * capacity)]
         self.data = [None for _ in range(capacity)]
         self.data_pointer = 0
+        
 
     def _operate_helper(self, start, end, node, query_start, query_end):
         if start == query_start and end == query_end:
@@ -158,25 +162,32 @@ class PrioritizedReplayBuffer:
     def __len__(self):
         return len(self.data) 
 
+    def __str__(self):
+        return "First 10 items in buffer:\n" + "\n".join(str(self.data[i]) for i in range(min(10, len(self.data))))
+
 class DQNAgent:
     def __init__(self, state_size, action_size):
         self.state_size = state_size
         self.action_size = action_size
-        self.replay_counter = 0        
+        self.replay_counter = 0
         # Increase memory size
-        self.memory = PrioritizedReplayBuffer(size=2000, alpha=0.6)
+        self.memory = PrioritizedReplayBuffer(size=100000, alpha=0.6)
+        self.update_freq = 10
+        self.lazy_indices = []
+        self.lazy_priorities = []
+        self.beta = 0.4  # starting value of beta
+        self.beta_increment = 0.001  # the amount by which beta is incremented at each step
+        self.max_beta = 1.0  # maximum value of beta
         
         self.gamma = 0.95  # discount rate
         
         # Initialize with a higher exploration rate
         self.epsilon = 1.0  
         # Slow down epsilon decay
-        self.epsilon_decay = 0.995
+        self.epsilon_decay = 0.9999
         self.epsilon_min = 0.01
         
-        self.learning_rate = 0.001
-        # Adjust learning rate decay
-        self.lr_decay = 0.00005
+        self.learning_rate = 0.00001
 
         self.model = self._build_model()
 
@@ -184,13 +195,23 @@ class DQNAgent:
         model = Sequential()
         
         # Input Layer
-        model.add(Dense(256, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(512, input_dim=self.state_size, activation='relu'))
         model.add(BatchNormalization())
         model.add(Activation('relu'))
         model.add(Dropout(0.2))
-        
+
         # Hidden Layer 1
+        model.add(Dense(256, activation='relu'))
+        model.add(BatchNormalization())
+        model.add(Dropout(0.2))
+        
+        # Hidden Layer 2
         model.add(Dense(128, activation='relu'))
+        model.add(BatchNormalization())
+        model.add(Dropout(0.2))
+
+        # Hidden Layer 3
+        model.add(Dense(64, activation='relu'))
         model.add(BatchNormalization())
         model.add(Dropout(0.2))
         
@@ -201,18 +222,19 @@ class DQNAgent:
         model.compile(optimizer=optimizer, loss='mse')
         return model
 
-    def remember(self, state, action, reward, next_state, done):
+    def remember(self, state, action, reward, next_state):
         preprocessed_state = preprocess(state)
         preprocessed_next_state = preprocess(next_state)
         action_index = ACTIONS.index(action)
-        self.memory.add((preprocessed_state, action_index, reward, preprocessed_next_state, done))
+        self.memory.add((preprocessed_state, action_index, reward, preprocessed_next_state))
 
     def act(self, state):
         # Decay epsilon after taking an action
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
         if np.random.rand() <= self.epsilon:
-            return random.choice(ACTIONS)
+            probs = [0.2, 0.2, 0.2, 0.2, 0.12, 0.08]
+            return np.random.choice(ACTIONS, p=probs)
         act_values = self.model.predict(state.reshape(1, -1), verbose=0)
         max_val = np.max(act_values)
         act_values2 = act_values.flatten()
@@ -224,21 +246,24 @@ class DQNAgent:
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
         
-    def replay(self, batch_size, beta=0.4):
+    def replay(self, batch_size):
         if len(self.memory.data) < batch_size:
             return
-        minibatch, indices, weights = self.memory.sample(batch_size, beta)
+        self.beta = min(self.max_beta, self.beta + self.beta_increment)
+        minibatch, indices, weights = self.memory.sample(batch_size, self.beta)
         states, targets_f = [], []
-        for idx, (state, action, reward, next_state, done) in enumerate(minibatch):
-            target = reward
-            if not done:
-                target = (reward + self.gamma * np.amax(self.model.predict(next_state.reshape(1, -1), verbose=0)[0]))
+        for idx, (state, action, reward, next_state) in enumerate(minibatch):
+            target = (reward + self.gamma * np.amax(self.model.predict(next_state.reshape(1, -1), verbose=0)[0]))
             target_f = self.model.predict(state.reshape(1, -1), verbose=0)
             
             # Get the TD error and update priority
             old_val = target_f[0][action]
             td_error = np.clip(abs(old_val - target), -1, 1) + 1e-5
-            self.memory.update_priorities([indices[idx]], [td_error])
+            self.lazy_indices.append(indices[idx])
+            self.lazy_priorities.append(td_error)
+            if self.replay_counter % self.update_freq == 0:
+                self.memory.update_priorities(self.lazy_indices, self.lazy_priorities)
+                self.lazy_indices, self.lazy_priorities = [], []
     
             target_f[0][action] = target
             target_f[0][action] *= weights[idx]  # Weighting the TD error with the importance sampling weight
@@ -249,7 +274,8 @@ class DQNAgent:
         states = np.vstack(states)
         lr_scheduler = LearningRateScheduler(self.lr_schedule)
         
-        return self.model.fit(states, np.array(targets_f), epochs=3, verbose=0, callbacks=[lr_scheduler])
+        return self.model.fit(states, np.array(targets_f), epochs=5, verbose=1, callbacks=[lr_scheduler])
+    
 
     def lr_schedule(self, epoch):
         # You can adjust the schedule as you see fit.
@@ -261,7 +287,7 @@ class DQNAgent:
 
     
     def load(self, name):
-        self.model = keras.models.load_model(name)
+            self.model = tf.keras.models.load_model(name)
 
     def save(self, name):
         self.model.save(name)
