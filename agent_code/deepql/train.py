@@ -51,7 +51,6 @@ class Training:
         self.game_score += reward
         if "COIN_COLLECTED" in events:
             self.coins_collected += 1
-
         if "INVALID_ACTION" in events:
             self.invalid_moves += 1
         if "BOMB_DROPPED" in events:
@@ -71,15 +70,23 @@ class Training:
         self.invalid_moves = 0
         self.bombs_placed_last_50_games.append(self.bombs_placed)
         self.bombs_placed = 0
-        
+        reward = reward_from_events(self, events)
+        self.game_score += reward
+        if "COIN_COLLECTED" in events:
+            self.coins_collected += 1
+        if "INVALID_ACTION" in events:
+            self.invalid_moves += 1
+        if "BOMB_DROPPED" in events:
+            self.bombs_placed += 1
         # Reset game score for the next episode
+        self.remember(last_game_state, last_action, reward, None)
         self.game_score_arr.append(self.game_score)
         self.highest_score = max(self.game_score, self.highest_score)
         self.game_score = 0
 
         # Train the agent if memory is sufficiently populated
-        if len(self.agent.memory) >= 256:
-            self.replay(256)
+        if len(self.agent.memory) >= 32:
+            self.replay(32)
         
         # Update episode counter
         self.episode_counter += 1

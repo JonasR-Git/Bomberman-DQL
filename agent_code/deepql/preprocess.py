@@ -2,6 +2,10 @@ import numpy as np
 from .settings import MAX_STEPS, EXPLOSION_TIMER, ROWS, COLS, BOMB_TIMER, BOMB_POWER, MAX_AGENTS
 
 def preprocess(game_state):
+
+    if game_state is None:
+        return np.zeros(1472, dtype=np.float32)
+
     # Normalize 'round' and 'step'
     round = game_state['round']
     step = (game_state['step'] / MAX_STEPS) - 0.5

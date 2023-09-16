@@ -12,7 +12,7 @@ from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activati
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import LearningRateScheduler
 
-ACTIONS = ['LEFT', 'RIGHT', 'UP', 'DOWN', 'WAIT', 'BOMB']
+ACTIONS = ['UP', 'RIGHT', 'DOWN', 'LEFT', 'WAIT', 'BOMB']
 
 class SegmentTree:
     def __init__(self, capacity, operation, neutral_element):
@@ -184,10 +184,10 @@ class DQNAgent:
         # Initialize with a higher exploration rate
         self.epsilon = 1.0  
         # Slow down epsilon decay
-        self.epsilon_decay = 0.9999
-        self.epsilon_min = 0.01
+        self.epsilon_decay = 0.999
+        self.epsilon_min = 0.001
         
-        self.learning_rate = 0.00001
+        self.learning_rate = 0.001
 
         self.model = self._build_model()
 
@@ -228,19 +228,52 @@ class DQNAgent:
         action_index = ACTIONS.index(action)
         self.memory.add((preprocessed_state, action_index, reward, preprocessed_next_state))
 
-    def act(self, state):
+    def act(self, state, game_state):
         # Decay epsilon after taking an action
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
         if np.random.rand() <= self.epsilon:
-            probs = [0.2, 0.2, 0.2, 0.2, 0.12, 0.08]
-            return np.random.choice(ACTIONS, p=probs)
+            action = np.random.choice(self.get_valid_actions(game_state))
+            print(action)
+            return action
         act_values = self.model.predict(state.reshape(1, -1), verbose=0)
         max_val = np.max(act_values)
         act_values2 = act_values.flatten()
         best_actions = [action for action, q_val in zip(ACTIONS, act_values2) if q_val == max_val]
         
         return random.choice(best_actions)
+
+    def get_valid_actions(self, game_state):
+        x, y = game_state['self'][3]
+        ROWS, COLS = field.shape
+        field = game_state['field']
+        
+        valid_actions = []
+
+        bomb_positions = [bomb[0] for bomb in game_state['bombs']]
+
+        # Check move UP
+        if y > 0 and field[y - 1][x] == 0 and (x, y-1) not in bomb_positions:
+            valid_actions.append('UP')
+        # Check move DOWN
+        if y < ROWS - 1 and field[y + 1][x] == 0 and (x, y+1) not in bomb_positions:
+            valid_actions.append('DOWN')
+        # Check move LEFT
+        if x > 0 and field[y][x - 1] == 0 and (x-1, y) not in bomb_positions:
+            valid_actions.append('LEFT')
+        # Check move RIGHT
+        if x < COLS - 1 and field[y][x + 1] == 0 and (x+1, y) not in bomb_positions:
+            valid_actions.append('RIGHT')
+        
+        # Check for active bombs nearby
+        if game_state['self'][2] and (x, y) not in bomb_positions:
+            valid_actions.append('BOMB')
+
+        # Always can wait
+        valid_actions.append('WAIT')
+
+        return valid_actions
+
 
     def decay_epsilon(self):
         if self.epsilon > self.epsilon_min:
