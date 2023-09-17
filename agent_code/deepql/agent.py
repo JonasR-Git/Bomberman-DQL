@@ -7,6 +7,9 @@ from .preprocess import preprocess
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import keras
+import sys
+import os
+import gc
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activation
 from tensorflow.keras.optimizers import Adam
@@ -88,12 +91,15 @@ class SegmentTree:
 
             
 class PrioritizedReplayBuffer:
-    def __init__(self, size, alpha):
+    def __init__(self, size, alpha=0.6, beta=0.4, beta_increment=0.001, max_beta=1.0):
         """Initialize Prioritized Replay Buffer."""
         it_capacity = 1
         while it_capacity < size:
             it_capacity *= 2
         self.alpha = alpha
+        self.beta = beta  
+        self.beta_increment = beta_increment  
+        self.max_beta = max_beta  
         self.buffer_capacity = size        
         self.data = []
         self.max_priority = 1.0
@@ -125,6 +131,7 @@ class PrioritizedReplayBuffer:
             res = []
             idxes = []
             p_total = self.sum_tree.operate(0, len(self.data) - 1)
+            max_weight = (p_min * len(self.data)) ** (-beta)
             segment = p_total / n
             priorities = []
             for i in range(n):
@@ -132,6 +139,8 @@ class PrioritizedReplayBuffer:
                 b = segment * (i + 1)
                 s = random.uniform(a, b)
                 idx, p, data = self._sample_from_segment(s)
+                weight = ((p * len(self.data)) ** (-beta) / max_weight)
+                weights.append(weight)
                 priorities.append(p)
                 res.append(data)
                 idxes.append(idx)
@@ -153,11 +162,19 @@ class PrioritizedReplayBuffer:
             idxes.append(idx)
             res.append(data)
         return res, idxes, weights
+        
 
     def _sample_from_segment(self, s):
         idx, p = self.sum_tree.retrieve(s)
         data = self.data[idx]
         return idx, p, data
+    
+    def print_size(self):
+        print("Memory data size:", len(self.data))
+        print("Sum tree data size:", len(self.sum_tree.data))
+        print("Min tree data size:", len(self.min_tree.data))
+        print(sys.getsizeof(self.data), sys.getsizeof(self.sum_tree.data), sys.getsizeof(self.min_tree.data))
+       
             
     def __len__(self):
         return len(self.data) 
@@ -176,18 +193,18 @@ class DQNAgent:
         self.lazy_indices = []
         self.lazy_priorities = []
         self.beta = 0.4  # starting value of beta
-        self.beta_increment = 0.001  # the amount by which beta is incremented at each step
+        self.beta_increment = 0.0001  # the amount by which beta is incremented at each step
         self.max_beta = 1.0  # maximum value of beta
         
         self.gamma = 0.95  # discount rate
         
         # Initialize with a higher exploration rate
-        self.epsilon = 1.0  
+        self.epsilon = 1 
         # Slow down epsilon decay
-        self.epsilon_decay = 0.999
+        self.epsilon_decay = 0.9999
         self.epsilon_min = 0.001
         
-        self.learning_rate = 0.001
+        self.learning_rate = 0.0001
 
         self.model = self._build_model()
 
@@ -195,30 +212,17 @@ class DQNAgent:
         model = Sequential()
         
         # Input Layer
-        model.add(Dense(512, input_dim=self.state_size, activation='relu'))
-        model.add(BatchNormalization())
-        model.add(Activation('relu'))
+        model.add(Dense(256, input_dim=self.state_size, activation='relu'))
         model.add(Dropout(0.2))
 
         # Hidden Layer 1
-        model.add(Dense(256, activation='relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.2))
-        
-        # Hidden Layer 2
         model.add(Dense(128, activation='relu'))
-        model.add(BatchNormalization())
         model.add(Dropout(0.2))
 
-        # Hidden Layer 3
-        model.add(Dense(64, activation='relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.2))
-        
         # Output Layer
         model.add(Dense(self.action_size, activation='linear'))
         
-        optimizer = Adam(learning_rate=self.learning_rate)
+        optimizer = Adam(learning_rate=self.learning_rate, clipnorm=1.0)
         model.compile(optimizer=optimizer, loss='mse')
         return model
 
@@ -227,26 +231,33 @@ class DQNAgent:
         preprocessed_next_state = preprocess(next_state)
         action_index = ACTIONS.index(action)
         self.memory.add((preprocessed_state, action_index, reward, preprocessed_next_state))
+        #self.memory.print_size()
 
     def act(self, state, game_state):
-        # Decay epsilon after taking an action
-        if self.epsilon > self.epsilon_min:
-            self.epsilon *= self.epsilon_decay
         if np.random.rand() <= self.epsilon:
             action = np.random.choice(self.get_valid_actions(game_state))
-            print(action)
+            print("Random Action:", action)
             return action
         act_values = self.model.predict(state.reshape(1, -1), verbose=0)
         max_val = np.max(act_values)
         act_values2 = act_values.flatten()
         best_actions = [action for action, q_val in zip(ACTIONS, act_values2) if q_val == max_val]
-        
+        print("Calculated Action:", best_actions)
         return random.choice(best_actions)
+    
+    def decay_epsilon(self):
+        self.epsilon = max(self.epsilon_min, self.epsilon_decay * self.epsilon)
+
+    def get_q_values(self):
+        return self.model.get_weights()  
+    
+    def print_size(self):
+        self.memory.print_size()
 
     def get_valid_actions(self, game_state):
         x, y = game_state['self'][3]
-        ROWS, COLS = field.shape
         field = game_state['field']
+        ROWS, COLS = field.shape
         
         valid_actions = []
 
@@ -264,28 +275,32 @@ class DQNAgent:
         # Check move RIGHT
         if x < COLS - 1 and field[y][x + 1] == 0 and (x+1, y) not in bomb_positions:
             valid_actions.append('RIGHT')
-        
-        # Check for active bombs nearby
+
+        # If only one direction is available, restrict actions to that direction or BOMB
+        if len(valid_actions) == 1:
+            if game_state['self'][2] and (x, y) not in bomb_positions:  # If bomb is available and not at player's position
+                valid_actions.append('BOMB')
+            return valid_actions  # Return here, do not append 'WAIT'
+
+        # Check for active bombs nearby if more than one direction is possible or no direction is possible
         if game_state['self'][2] and (x, y) not in bomb_positions:
             valid_actions.append('BOMB')
 
-        # Always can wait
+        # Always can wait if more than one direction is possible or no direction is possible
         valid_actions.append('WAIT')
 
         return valid_actions
-
-
-    def decay_epsilon(self):
-        if self.epsilon > self.epsilon_min:
-            self.epsilon *= self.epsilon_decay
         
     def replay(self, batch_size):
-        if len(self.memory.data) < batch_size:
+        print("Train")
+        if len(self.memory.data) < batch_size :
             return
         self.beta = min(self.max_beta, self.beta + self.beta_increment)
         minibatch, indices, weights = self.memory.sample(batch_size, self.beta)
         states, targets_f = [], []
         for idx, (state, action, reward, next_state) in enumerate(minibatch):
+            if next_state is None:
+                continue
             target = (reward + self.gamma * np.amax(self.model.predict(next_state.reshape(1, -1), verbose=0)[0]))
             target_f = self.model.predict(state.reshape(1, -1), verbose=0)
             
@@ -306,21 +321,40 @@ class DQNAgent:
         self.replay_counter += 1
         states = np.vstack(states)
         lr_scheduler = LearningRateScheduler(self.lr_schedule)
-        
-        return self.model.fit(states, np.array(targets_f), epochs=5, verbose=1, callbacks=[lr_scheduler])
+        #objs_to_track = {
+        #    "memory_data": self.memory.data,  # Assuming replay_buffer is an instance of PrioritizedReplayBuffer
+        #    "sum_tree_data": self.memory.sum_tree.data,
+        #    "min_tree_data": self.memory.min_tree.data
+        #}
+        #log_memory_usage(objs_to_track)
+        return self.model.fit(states, np.array(targets_f), epochs=3, verbose=0, callbacks=[lr_scheduler])
     
 
     def lr_schedule(self, epoch):
-        # You can adjust the schedule as you see fit.
-        if self.replay_counter > 10000:
-            return self.learning_rate * 0.1
-        elif self.replay_counter > 5000:
-            return self.learning_rate * 0.5
-        return self.learning_rate
+        # A dynamic learning rate can be helpful. This is a simple step decay, but more sophisticated methods exist.
+        # This decay can be adjusted based on the problem at hand.
+        if epoch < 100:
+            return self.learning_rate
+        elif epoch < 500:
+            return self.learning_rate * 0.9
+        elif epoch < 1000:
+            return self.learning_rate * 0.7
+        return self.learning_rate * 0.5
 
+    def clean_up_memory(self):
+        gc.collect()
     
     def load(self, name):
-            self.model = tf.keras.models.load_model(name)
+        print("Model loaded")
+        self.model = tf.keras.models.load_model(name)
 
     def save(self, name):
-        self.model.save(name)
+        save_path = os.path.join('./network_parameters', name)
+        tf.keras.models.save_model(self.model, save_path)
+
+
+def log_memory_usage(objs):
+    for name, obj in objs.items():
+        size_in_bytes = sys.getsizeof(obj)
+        size_in_mb = size_in_bytes / (1024 * 1024)  # Convert bytes to megabytes
+        print(f"{name}: {size_in_mb:.2f} MB")

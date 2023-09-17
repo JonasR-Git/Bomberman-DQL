@@ -9,6 +9,7 @@ from environment import BombeRLeWorld, GUI
 from fallbacks import pygame, LOADED_PYGAME
 from replay import ReplayWorld
 
+
 ESCAPE_KEYS = (pygame.K_q, pygame.K_ESCAPE)
 
 
@@ -92,7 +93,6 @@ def world_controller(world, n_rounds, *,
                             do_continue = True
 
     world.end()
-
 
 def main(argv = None):
     parser = ArgumentParser()

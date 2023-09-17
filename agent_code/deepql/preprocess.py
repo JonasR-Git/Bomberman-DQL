@@ -1,59 +1,56 @@
 import numpy as np
 from .settings import MAX_STEPS, EXPLOSION_TIMER, ROWS, COLS, BOMB_TIMER, BOMB_POWER, MAX_AGENTS
 
+RANGE = 5
+
 def preprocess(game_state):
-
     if game_state is None:
-        return np.zeros(1472, dtype=np.float32)
+        return None
 
-    # Normalize 'round' and 'step'
-    round = game_state['round']
-    step = (game_state['step'] / MAX_STEPS) - 0.5
+    _, _, _, (agent_x, agent_y) = game_state['self']
 
-    # Flatten 'field' and 'explosion_map'
-    field = game_state['field'].flatten().astype(np.float32) / 1.0
-    explosion_map = (game_state['explosion_map'].flatten().astype(np.float32) / EXPLOSION_TIMER) - 0.5
+    # The range is now 4 to ensure a 9x9 field around the agent
+    RANGE = 4 
 
-    # Safety map
-    safety_map = -np.ones((ROWS, COLS), dtype=np.float32)
+    # Create a fixed size 9x9 field initialized with -1
+    fixed_size_field = np.full((9, 9), -1)
+    clipped_field = np.full((9, 9), -1)
+    fixed_size_bomb_map = np.zeros_like(fixed_size_field, dtype=np.float32)
+    fixed_size_safety_map = np.full_like(fixed_size_field, -1, dtype=np.float32)
+    fixed_size_coin_map = np.zeros_like(fixed_size_field, dtype=np.float32)
+
+    # Calculate bounds for the slice of the actual game map
+    x_min = max(agent_x - RANGE, 0)
+    x_max = min(agent_x + RANGE + 1, game_state['field'].shape[1])
+    y_min = max(agent_y - RANGE, 0)
+    y_max = min(agent_y + RANGE + 1, game_state['field'].shape[0])
+
+    # Get the actual game map slice
+    clipped_field[RANGE-agent_y+y_min:RANGE-agent_y+y_max, RANGE-agent_x+x_min:RANGE-agent_x+x_max] = game_state['field'][y_min:y_max, x_min:x_max]
+
+    fixed_size_field = clipped_field
+
     for (x, y), t in game_state['bombs']:
-        for dx in range(-BOMB_POWER, BOMB_POWER + 1):
-            if 0 <= x + dx < COLS:
-                safety_map[y, x + dx] = min(safety_map[y, x + dx], t)
-        for dy in range(-BOMB_POWER, BOMB_POWER + 1):
-            if 0 <= y + dy < ROWS:
-                safety_map[y + dy, x] = min(safety_map[y + dy, x], t)
-    safety_map = safety_map.flatten()
+        rel_x = x - agent_x + RANGE
+        rel_y = y - agent_y + RANGE
+        if 0 <= rel_x < 9 and 0 <= rel_y < 9:  # Ensure the coordinates are within the 9x9 field
+            fixed_size_bomb_map[rel_y, rel_x] = t
+            for dx in range(-BOMB_POWER, BOMB_POWER + 1):
+                if 0 <= rel_x + dx < 9:
+                    fixed_size_safety_map[rel_y, rel_x + dx] = min(fixed_size_safety_map[rel_y, rel_x + dx], t)
+            for dy in range(-BOMB_POWER, BOMB_POWER + 1):
+                if 0 <= rel_y + dy < 9:
+                    fixed_size_safety_map[rel_y + dy, rel_x] = min(fixed_size_safety_map[rel_y + dy, rel_x], t)
 
-    # Process 'bombs'
-    bomb_map = np.zeros((ROWS, COLS), dtype=np.float32)
-    for (x, y), t in game_state['bombs']:
-        bomb_map[y, x] = (t / BOMB_TIMER) - 0.5
-    bomb_map = bomb_map.flatten()
+    coins = game_state['coins']
+    coins_distances = [(abs(agent_x - x) + abs(agent_y - y), (x, y)) for (x, y) in coins]
+    coins_distances.sort(key=lambda x: x[0])
+    for _, (x, y) in coins_distances[:2]:
+        rel_x = x - agent_x + RANGE
+        rel_y = y - agent_y + RANGE
+        if 0 <= rel_x < 9 and 0 <= rel_y < 9:  # Ensure the coordinates are within the 9x9 field
+            fixed_size_coin_map[rel_y, rel_x] = 1
 
-    # Process 'coins'
-    coin_map = np.zeros((ROWS, COLS), dtype=np.float32)
-    for (x, y) in game_state['coins']:
-        coin_map[y, x] = 1
-    coin_map = coin_map.flatten()
+    state_representation = np.stack([fixed_size_field, fixed_size_bomb_map, fixed_size_safety_map, fixed_size_coin_map], axis=-1)
 
-    # Process 'self'
-    self = np.zeros(5, dtype=np.float32)
-    _, score, bomb_available, (x, y) = game_state['self']
-    self[0] = (score / 100.0) - 0.5  # Assume max score 100
-    self[1] = 1 if bomb_available else 0
-    self[2] = (x / COLS) - 0.5
-    self[3] = (y / ROWS) - 0.5
-
-    # Process 'others'
-    others = np.zeros(5 * MAX_AGENTS, dtype=np.float32)
-    for i, (_, score, bomb_available, (x, y)) in enumerate(game_state['others']):
-        others[i * 5] = (score / 100.0) - 0.5
-        others[i * 5 + 1] = 1 if bomb_available else 0
-        others[i * 5 + 2] = (x / COLS) - 0.5
-        others[i * 5 + 3] = (y / ROWS) - 0.5
-
-    # Concatenate all features into a single array
-    state = np.concatenate([np.array([round, step], dtype=np.float32), field, bomb_map, explosion_map, safety_map, coin_map, self, others])
-
-    return state
+    return state_representation
