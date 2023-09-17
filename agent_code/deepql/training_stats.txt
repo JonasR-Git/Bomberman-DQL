@@ -1,9 +1,45 @@
 --- After 250 episodes ---
-Average Score over the last 200 episodes: -299.04
+Average Score over the last 200 episodes: -412.50
 Average Loss over the last 50 episodes: nan
-Highest Score so far: -125.70
-Current Epsilon: 0.9753
-Average Moves over the last 50 games: 10.40
-Invalid_moves_last_50_games: 0.04
-bombs_placed_last_50_games: 1.28
+Highest Score so far: -293.35
+Current Epsilon: 0.7787
+Average Moves over the last 50 games: 7.06
+Invalid_moves_last_50_games: 1.30
+bombs_placed_last_50_games: 1.18
+------------------------------------------
+--- After 250 episodes ---
+Average Score over the last 200 episodes: -410.40
+Average Loss over the last 50 episodes: nan
+Highest Score so far: -302.60
+Current Epsilon: 0.8825
+Average Moves over the last 50 games: 8.78
+Invalid_moves_last_50_games: 1.24
+bombs_placed_last_50_games: 1.24
+------------------------------------------
+--- After 500 episodes ---
+Average Score over the last 200 episodes: -407.45
+Average Loss over the last 50 episodes: nan
+Highest Score so far: -294.50
+Current Epsilon: 0.7788
+Average Moves over the last 50 games: 7.80
+Invalid_moves_last_50_games: 1.36
+bombs_placed_last_50_games: 1.16
+------------------------------------------
+--- After 750 episodes ---
+Average Score over the last 200 episodes: -420.94
+Average Loss over the last 50 episodes: nan
+Highest Score so far: -294.50
+Current Epsilon: 0.6872
+Average Moves over the last 50 games: 8.92
+Invalid_moves_last_50_games: 1.30
+bombs_placed_last_50_games: 1.14
+------------------------------------------
+--- After 1000 episodes ---
+Average Score over the last 200 episodes: -432.81
+Average Loss over the last 50 episodes: nan
+Highest Score so far: -294.50
+Current Epsilon: 0.6065
+Average Moves over the last 50 games: 7.44
+Invalid_moves_last_50_games: 1.18
+bombs_placed_last_50_games: 1.08
 ------------------------------------------

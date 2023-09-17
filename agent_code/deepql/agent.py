@@ -173,7 +173,7 @@ class DQNAgent:
         self.action_size = action_size
         self.replay_counter = 0
         # Increase memory size
-        self.memory = PrioritizedReplayBuffer(size=100000, alpha=0.6)
+        self.memory = PrioritizedReplayBuffer(size=50000, alpha=0.6)
         self.update_freq = 10
         self.lazy_indices = []
         self.lazy_priorities = []
@@ -186,21 +186,22 @@ class DQNAgent:
         # Initialize with a higher exploration rate
         self.epsilon = 1 
         # Slow down epsilon decay
-        self.epsilon_decay = 0.9999
+        self.epsilon_decay = 0.9995
         self.epsilon_min = 0.001
         
-        self.learning_rate = 0.0001
+        self.learning_rate = 0.001
 
         self.model = self._build_model()
 
     def _build_model(self):
         model = Sequential()
         
-        # Input Layer
-        model.add(Dense(256, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(512, input_dim=self.state_size, activation='relu'))
         model.add(Dropout(0.2))
 
-        # Hidden Layer 1
+        model.add(Dense(256, activation='relu'))
+        model.add(Dropout(0.2))
+
         model.add(Dense(128, activation='relu'))
         model.add(Dropout(0.2))
 
@@ -332,11 +333,10 @@ class DQNAgent:
     
     def load(self, name):
         print("Model loaded")
-        self.model = tf.keras.models.load_model(name)
+        self.model.load_weights(name)
 
     def save(self, name):
-        save_path = os.path.join(name)
-        tf.keras.models.save_model(self.model, save_path)
+        self.model.save_weights(name)
 
 
 def log_memory_usage(objs):

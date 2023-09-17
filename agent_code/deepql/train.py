@@ -21,7 +21,7 @@ invalid_moves = 0
 invalid_moves_last_50_games = deque(maxlen=50)
 bombs_placed = 0
 bombs_placed_last_50_games = deque(maxlen=50)
-batch_size = 64
+batch_size = 128
 
 def setup_training(self):
     self.episode_counter = episode_counter
