@@ -4,12 +4,6 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from collections import deque
 from .rewards import reward_from_events
-from .agent import DQNAgent
-from typing import List
-import sys
-import psutil
-import objgraph
-
 
 print(tf.test.is_built_with_cuda())
 
@@ -68,10 +62,6 @@ def game_events_occurred(self, old_game_state, self_action, new_game_state, even
     self.current_moves_counter += 1
 
 def end_of_round(self, last_game_state, last_action, events):
-    objgraph.show_backrefs(objgraph.by_type('list'), max_depth=5, filename='list_backrefs.png')
-
-
-
     '''print("-------------")
     print("MEMORY USAGE")
     print("-------------")
@@ -138,9 +128,6 @@ def end_of_round(self, last_game_state, last_action, events):
     if (self.episode_counter - 100) % 400 == 0:
         print("Saved:", self.episode_counter)
         self.dqn_agent.save(os.path.join('network_parameters', f'save_after_{self.episode_counter}_iterations'))
-
-    if self.episode_counter % 50 == 0:
-        self.dqn_agent.clean_up_memory()
 
     if self.episode_counter % 250 == 0:
         print("Stats saved")

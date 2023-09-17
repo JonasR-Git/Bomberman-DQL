@@ -109,8 +109,11 @@ class PrioritizedReplayBuffer:
 
     def add(self, data):
         idx = self.tree_ptr
+        # If the buffer is full, we should also ensure that the tree_ptr points to the oldest data.
+        # This way, when we add new data to the SegmentTree, we are overwriting the oldest data.
         if len(self.data) >= self.buffer_capacity:
             self.data.pop(0)
+            self.tree_ptr = idx % self.buffer_capacity
         self.data.append(data)
         self.sum_tree.append(data, self.max_priority)  # set to max_priority
         self.min_tree.append(data, self.max_priority)  # optionally, set to max_priority here as well
@@ -127,24 +130,6 @@ class PrioritizedReplayBuffer:
 
     def sample(self, n, beta):
         assert len(self.data) > 0
-        if not isinstance(self.data[0], tuple):
-            res = []
-            idxes = []
-            p_total = self.sum_tree.operate(0, len(self.data) - 1)
-            max_weight = (p_min * len(self.data)) ** (-beta)
-            segment = p_total / n
-            priorities = []
-            for i in range(n):
-                a = segment * i
-                b = segment * (i + 1)
-                s = random.uniform(a, b)
-                idx, p, data = self._sample_from_segment(s)
-                weight = ((p * len(self.data)) ** (-beta) / max_weight)
-                weights.append(weight)
-                priorities.append(p)
-                res.append(data)
-                idxes.append(idx)
-            return res, idxes, priorities
         res = []
         idxes = []
         weights = []
@@ -292,6 +277,7 @@ class DQNAgent:
         return valid_actions
         
     def replay(self, batch_size):
+        print(len(gc.get_objects()))
         print("Train")
         if len(self.memory.data) < batch_size :
             return
@@ -349,7 +335,7 @@ class DQNAgent:
         self.model = tf.keras.models.load_model(name)
 
     def save(self, name):
-        save_path = os.path.join('./network_parameters', name)
+        save_path = os.path.join(name)
         tf.keras.models.save_model(self.model, save_path)
 
 

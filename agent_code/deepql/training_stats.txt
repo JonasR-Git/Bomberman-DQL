@@ -1,0 +1,9 @@
+--- After 250 episodes ---
+Average Score over the last 200 episodes: -299.04
+Average Loss over the last 50 episodes: nan
+Highest Score so far: -125.70
+Current Epsilon: 0.9753
+Average Moves over the last 50 games: 10.40
+Invalid_moves_last_50_games: 0.04
+bombs_placed_last_50_games: 1.28
+------------------------------------------
