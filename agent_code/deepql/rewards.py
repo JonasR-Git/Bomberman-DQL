@@ -1,19 +1,18 @@
 import events as e
 
 GAME_REWARDS = {
-        e.COIN_COLLECTED: 40,
-        e.KILLED_OPPONENT: 200,
-        e.MOVED_RIGHT: 0,
-        e.MOVED_LEFT: 0,
-        e.MOVED_UP: 0,
-        e.MOVED_DOWN: 0,
+        e.COIN_COLLECTED: 100,
+        e.KILLED_OPPONENT: 400,
+        e.MOVED_RIGHT: -1,
+        e.MOVED_LEFT: -1,
+        e.MOVED_UP: -1,
+        e.MOVED_DOWN: -1,
         e.WAITED: -15,
         e.INVALID_ACTION: -60,
-        e.BOMB_DROPPED: -1,
-        e.COIN_FOUND: 8,      
-        e.KILLED_SELF: -10,
-        e.SURVIVED_ROUND: 40,
-        e.GOT_KILLED: -300,
+        e.BOMB_DROPPED: -2,
+        e.COIN_FOUND: 15,      
+        e.KILLED_SELF: -20,
+        e.GOT_KILLED: -400,
     }
 
 def reward_from_events(self, events) -> int:

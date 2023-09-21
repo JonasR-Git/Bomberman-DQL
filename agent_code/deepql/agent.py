@@ -10,10 +10,13 @@ import keras
 import sys
 import os
 import gc
+from keras import backend as K
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activation
 from tensorflow.keras.optimizers import Adam
+from keras.layers import LeakyReLU
 from tensorflow.keras.callbacks import LearningRateScheduler
+from random import shuffle
 
 ACTIONS = ['UP', 'RIGHT', 'DOWN', 'LEFT', 'WAIT', 'BOMB']
 
@@ -153,14 +156,7 @@ class PrioritizedReplayBuffer:
         idx, p = self.sum_tree.retrieve(s)
         data = self.data[idx]
         return idx, p, data
-    
-    def print_size(self):
-        print("Memory data size:", len(self.data))
-        print("Sum tree data size:", len(self.sum_tree.data))
-        print("Min tree data size:", len(self.min_tree.data))
-        print(sys.getsizeof(self.data), sys.getsizeof(self.sum_tree.data), sys.getsizeof(self.min_tree.data))
-       
-            
+           
     def __len__(self):
         return len(self.data) 
 
@@ -168,12 +164,12 @@ class PrioritizedReplayBuffer:
         return "First 10 items in buffer:\n" + "\n".join(str(self.data[i]) for i in range(min(10, len(self.data))))
 
 class DQNAgent:
-    def __init__(self, state_size, action_size):
+    def __init__(self, state_size, action_size, epsilon = 0):
         self.state_size = state_size
         self.action_size = action_size
         self.replay_counter = 0
         # Increase memory size
-        self.memory = PrioritizedReplayBuffer(size=50000, alpha=0.6)
+        self.memory = PrioritizedReplayBuffer(size=100000, alpha=0.6)
         self.update_freq = 10
         self.lazy_indices = []
         self.lazy_priorities = []
@@ -184,51 +180,74 @@ class DQNAgent:
         self.gamma = 0.95  # discount rate
         
         # Initialize with a higher exploration rate
-        self.epsilon = 1 
+        self.epsilon = epsilon
         # Slow down epsilon decay
-        self.epsilon_decay = 0.9995
-        self.epsilon_min = 0.001
+        self.epsilon_decay = 0.9999
+        self.epsilon_min = 0.05
         
         self.learning_rate = 0.001
 
         self.model = self._build_model()
+        self.target_model = self._build_model()
+        self.update_freq_target_dqn = 10
+
+        # RULE BASED TRAINING:
+        self.bomb_history = deque([], 5)
+        self.coordinate_history = deque([], 20)
+        self.ignore_others_timer = 0
+        self.current_round = 0
+
+    def update_target_model(self, tau=0.01):
+        """Soft update the weights of the target model with the main model weights."""
+        primary_weights = self.model.get_weights()
+        target_weights = self.target_model.get_weights()
+        
+        # Blend weights
+        blended_weights = [tau * pw + (1 - tau) * tw for pw, tw in zip(primary_weights, target_weights)]
+        
+        # Set the blended weights to the target network
+        self.target_model.set_weights(blended_weights)
 
     def _build_model(self):
         model = Sequential()
         
-        model.add(Dense(512, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(256, input_dim=self.state_size))
+        model.add(LeakyReLU(alpha=0.001))
         model.add(Dropout(0.2))
 
-        model.add(Dense(256, activation='relu'))
+        model.add(Dense(256))
+        model.add(LeakyReLU(alpha=0.001))
         model.add(Dropout(0.2))
 
-        model.add(Dense(128, activation='relu'))
+        model.add(Dense(128))
+        model.add(LeakyReLU(alpha=0.001))
+        model.add(Dropout(0.2))
+
+        model.add(Dense(32))
+        model.add(LeakyReLU(alpha=0.001))
         model.add(Dropout(0.2))
 
         # Output Layer
-        model.add(Dense(self.action_size, activation='linear'))
+        model.add(Dense(self.action_size))
+        model.add(Activation('linear'))
         
         optimizer = Adam(learning_rate=self.learning_rate, clipnorm=1.0)
         model.compile(optimizer=optimizer, loss='mse')
         return model
+      
 
     def remember(self, state, action, reward, next_state):
         preprocessed_state = preprocess(state)
         preprocessed_next_state = preprocess(next_state)
         action_index = ACTIONS.index(action)
         self.memory.add((preprocessed_state, action_index, reward, preprocessed_next_state))
-        #self.memory.print_size()
 
-    def act(self, state, game_state):
-        if np.random.rand() <= self.epsilon:
-            action = np.random.choice(self.get_valid_actions(game_state))
-            print("Random Action:", action)
-            return action
+    def act(self, state):
         act_values = self.model.predict(state.reshape(1, -1), verbose=0)
         max_val = np.max(act_values)
         act_values2 = act_values.flatten()
         best_actions = [action for action, q_val in zip(ACTIONS, act_values2) if q_val == max_val]
-        print("Calculated Action:", best_actions)
+        print("Calculated:", best_actions)
         return random.choice(best_actions)
     
     def decay_epsilon(self):
@@ -278,28 +297,45 @@ class DQNAgent:
         return valid_actions
         
     def replay(self, batch_size):
-        print(len(gc.get_objects()))
-        print("Train")
-        if len(self.memory.data) < batch_size :
+        if len(self.memory.data) < batch_size:
             return
+        
+        # Periodically update the target network
+        if self.replay_counter % self.update_freq_target_dqn == 0:
+            self.update_target_model()
+
+
         self.beta = min(self.max_beta, self.beta + self.beta_increment)
         minibatch, indices, weights = self.memory.sample(batch_size, self.beta)
+
+        # Batch the next state Q-value predictions
+        next_states = [transition[3].reshape(1, -1) for transition in minibatch if transition[3] is not None]
+
+        # DDQN - get the actions from the main model and the Q-values from the target model
+        next_state_action_values = self.model.predict(np.vstack(next_states))
+        best_actions = np.argmax(next_state_action_values, axis=1)
+
+        next_state_target_q_values = self.target_model.predict(np.vstack(next_states))
+        selected_q_values = np.array([q_values[action] for q_values, action in zip(next_state_target_q_values, best_actions)])
+
         states, targets_f = [], []
+        selected_idx = 0
         for idx, (state, action, reward, next_state) in enumerate(minibatch):
-            if next_state is None:
-                continue
-            target = (reward + self.gamma * np.amax(self.model.predict(next_state.reshape(1, -1), verbose=0)[0]))
+            target = reward
+            if next_state is not None:
+                target = reward + self.gamma * selected_q_values[selected_idx]
+                selected_idx += 1
+
             target_f = self.model.predict(state.reshape(1, -1), verbose=0)
-            
-            # Get the TD error and update priority
             old_val = target_f[0][action]
             td_error = np.clip(abs(old_val - target), -1, 1) + 1e-5
             self.lazy_indices.append(indices[idx])
             self.lazy_priorities.append(td_error)
+
             if self.replay_counter % self.update_freq == 0:
                 self.memory.update_priorities(self.lazy_indices, self.lazy_priorities)
                 self.lazy_indices, self.lazy_priorities = [], []
-    
+
             target_f[0][action] = target
             target_f[0][action] *= weights[idx]  # Weighting the TD error with the importance sampling weight
             states.append(state.reshape(1, -1))
@@ -308,14 +344,11 @@ class DQNAgent:
         self.replay_counter += 1
         states = np.vstack(states)
         lr_scheduler = LearningRateScheduler(self.lr_schedule)
-        #objs_to_track = {
-        #    "memory_data": self.memory.data,  # Assuming replay_buffer is an instance of PrioritizedReplayBuffer
-        #    "sum_tree_data": self.memory.sum_tree.data,
-        #    "min_tree_data": self.memory.min_tree.data
-        #}
-        #log_memory_usage(objs_to_track)
-        return self.model.fit(states, np.array(targets_f), epochs=3, verbose=0, callbacks=[lr_scheduler])
-    
+
+        loss = self.model.fit(states, np.array(targets_f), epochs=1, verbose=0, callbacks=[lr_scheduler], use_multiprocessing=True, steps_per_epoch=batch_size)
+        K.clear_session()
+        return loss
+
 
     def lr_schedule(self, epoch):
         # A dynamic learning rate can be helpful. This is a simple step decay, but more sophisticated methods exist.
@@ -338,9 +371,3 @@ class DQNAgent:
     def save(self, name):
         self.model.save_weights(name)
 
-
-def log_memory_usage(objs):
-    for name, obj in objs.items():
-        size_in_bytes = sys.getsizeof(obj)
-        size_in_mb = size_in_bytes / (1024 * 1024)  # Convert bytes to megabytes
-        print(f"{name}: {size_in_mb:.2f} MB")
