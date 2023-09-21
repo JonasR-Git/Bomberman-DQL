@@ -8,8 +8,7 @@ from random import shuffle
 ACTIONS = ['UP', 'RIGHT', 'DOWN', 'LEFT', 'WAIT', 'BOMB']
 
 dqn_agent = False
-train = True     
-epsilon = 0.99995
+train = True   
 replay_counter = 0
 current_round = 0
 bomb_history = deque([], 5)
@@ -21,6 +20,12 @@ def setup(self):
     if dqn_agent == False:
         print("create Agent")
         self.dqn_agent = DQNAgent(196, len(ACTIONS), 1)
+        saved_model_path = os.path.join('network_parameters', f'save_after_{9700}_iterations')
+        saved_model_path_index = os.path.join('network_parameters', f'save_after_{9700}_iterations.index')
+        if os.path.exists(saved_model_path_index):
+            self.dqn_agent.load(saved_model_path)
+        else:
+            print("Saved model weights not found. Proceeding with uninitialized model.")
         dqn_agent = True
 
 def act(self, game_state: dict) -> str:
@@ -28,13 +33,13 @@ def act(self, game_state: dict) -> str:
     if train:
         return get_random_action(self, game_state)
     state = preprocess(game_state)
-    action = self.dqn_agent.act(state, game_state)
+    action = self.dqn_agent.act(state)
     print(action)
     return action
 
 def get_random_action(self, game_state):
-    global replay_counter, epsilon
-    if np.random.rand() <= epsilon:
+    global replay_counter
+    if np.random.rand() <= self.dqn_agent.get_epsilon():
         if (replay_counter < 30000):
             if (np.random.rand() < 0.9):
                 action = rule_based_act(self, game_state)
@@ -48,7 +53,7 @@ def get_random_action(self, game_state):
         print("Random:", action)
         return action
     state = preprocess(game_state)
-    return self.dqn_agent.act(state, game_state)
+    return self.dqn_agent.act(state)
 
 
 def look_for_targets(free_space, start, targets):

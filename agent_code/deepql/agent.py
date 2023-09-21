@@ -1,20 +1,19 @@
+import os
+import tensorflow as tf
 import numpy as np
 import random
 import operator
 import bisect
 from collections import deque
 from .preprocess import preprocess
-import tensorflow as tf
 import matplotlib.pyplot as plt
-import keras
 import sys
-import os
 import gc
-from keras import backend as K
+from tensorflow.keras import backend as K
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activation
 from tensorflow.keras.optimizers import Adam
-from keras.layers import LeakyReLU
+from tensorflow.keras.layers import LeakyReLU
 from tensorflow.keras.callbacks import LearningRateScheduler
 from random import shuffle
 
@@ -169,7 +168,7 @@ class DQNAgent:
         self.action_size = action_size
         self.replay_counter = 0
         # Increase memory size
-        self.memory = PrioritizedReplayBuffer(size=100000, alpha=0.6)
+        self.memory = PrioritizedReplayBuffer(size=200000, alpha=0.6)
         self.update_freq = 10
         self.lazy_indices = []
         self.lazy_priorities = []
@@ -189,7 +188,7 @@ class DQNAgent:
 
         self.model = self._build_model()
         self.target_model = self._build_model()
-        self.update_freq_target_dqn = 10
+        self.update_freq_target_dqn = 20
 
         # RULE BASED TRAINING:
         self.bomb_history = deque([], 5)
@@ -215,7 +214,7 @@ class DQNAgent:
         model.add(LeakyReLU(alpha=0.001))
         model.add(Dropout(0.2))
 
-        model.add(Dense(256))
+        model.add(Dense(128))
         model.add(LeakyReLU(alpha=0.001))
         model.add(Dropout(0.2))
 
@@ -252,6 +251,9 @@ class DQNAgent:
     
     def decay_epsilon(self):
         self.epsilon = max(self.epsilon_min, self.epsilon_decay * self.epsilon)
+
+    def get_epsilon(self):
+        return self.epsilon
 
     def get_q_values(self):
         return self.model.get_weights()  
@@ -345,7 +347,7 @@ class DQNAgent:
         states = np.vstack(states)
         lr_scheduler = LearningRateScheduler(self.lr_schedule)
 
-        loss = self.model.fit(states, np.array(targets_f), epochs=1, verbose=0, callbacks=[lr_scheduler], use_multiprocessing=True, steps_per_epoch=batch_size)
+        loss = self.model.fit(states, np.array(targets_f), epochs=3, verbose=0, callbacks=[lr_scheduler], use_multiprocessing=True)
         K.clear_session()
         return loss
 
@@ -353,11 +355,11 @@ class DQNAgent:
     def lr_schedule(self, epoch):
         # A dynamic learning rate can be helpful. This is a simple step decay, but more sophisticated methods exist.
         # This decay can be adjusted based on the problem at hand.
-        if epoch < 100:
+        if epoch < 1000:
             return self.learning_rate
-        elif epoch < 500:
+        elif epoch < 10000:
             return self.learning_rate * 0.9
-        elif epoch < 1000:
+        elif epoch < 100000:
             return self.learning_rate * 0.7
         return self.learning_rate * 0.5
 

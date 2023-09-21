@@ -7,8 +7,8 @@ GAME_REWARDS = {
         e.MOVED_LEFT: -1,
         e.MOVED_UP: -1,
         e.MOVED_DOWN: -1,
-        e.WAITED: -15,
-        e.INVALID_ACTION: -60,
+        e.WAITED: -20,
+        e.INVALID_ACTION: -100,
         e.BOMB_DROPPED: -2,
         e.COIN_FOUND: 15,      
         e.KILLED_SELF: -20,
@@ -26,5 +26,5 @@ def reward_from_events(self, events) -> int:
 
     reward_sum = sum(GAME_REWARDS.get(event, 0) for event in events)
     if e.GOT_KILLED not in events: 
-        reward_sum += 0.05
+        reward_sum += 0.1
     return reward_sum
