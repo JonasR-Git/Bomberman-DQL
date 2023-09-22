@@ -20,9 +20,10 @@ def setup(self):
     if dqn_agent == False:
         print("create Agent")
         self.dqn_agent = DQNAgent(196, len(ACTIONS), 1)
-        saved_model_path = os.path.join('network_parameters', f'save_after_{9700}_iterations')
-        saved_model_path_index = os.path.join('network_parameters', f'save_after_{9700}_iterations.index')
+        saved_model_path = os.path.join('network_parameters', f'save_after_{11100}_iterations')
+        saved_model_path_index = os.path.join('network_parameters', f'save_after_{11100}_iterations.index')
         if os.path.exists(saved_model_path_index):
+            print("Model initialised with saved weights")
             self.dqn_agent.load(saved_model_path)
         else:
             print("Saved model weights not found. Proceeding with uninitialized model.")

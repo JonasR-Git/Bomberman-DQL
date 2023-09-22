@@ -1,0 +1,1848 @@
+--- After 50 episodes ---
+Average Score over the last 500 episodes: -446.49
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -238.80
+Current Epsilon: 0.9950
+Average Moves over the last 500 games: 78.22
+------------------------------------------
+--- After 100 episodes ---
+Average Score over the last 500 episodes: -432.86
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -221.20
+Current Epsilon: 0.9900
+Average Moves over the last 500 games: 57.34
+------------------------------------------
+--- After 150 episodes ---
+Average Score over the last 500 episodes: -440.23
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -221.20
+Current Epsilon: 0.9851
+Average Moves over the last 500 games: 36.08
+------------------------------------------
+--- After 200 episodes ---
+Average Score over the last 500 episodes: -457.79
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -221.20
+Current Epsilon: 0.9802
+Average Moves over the last 500 games: 73.68
+------------------------------------------
+--- After 250 episodes ---
+Average Score over the last 500 episodes: -450.25
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -192.50
+Current Epsilon: 0.9753
+Average Moves over the last 500 games: 63.24
+------------------------------------------
+--- After 300 episodes ---
+Average Score over the last 500 episodes: -463.48
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -192.50
+Current Epsilon: 0.9704
+Average Moves over the last 500 games: 59.16
+------------------------------------------
+--- After 350 episodes ---
+Average Score over the last 500 episodes: -443.77
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9656
+Average Moves over the last 500 games: 82.44
+------------------------------------------
+--- After 400 episodes ---
+Average Score over the last 500 episodes: -446.67
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9608
+Average Moves over the last 500 games: 58.68
+------------------------------------------
+--- After 450 episodes ---
+Average Score over the last 500 episodes: -454.65
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9560
+Average Moves over the last 500 games: 34.50
+------------------------------------------
+--- After 500 episodes ---
+Average Score over the last 500 episodes: -436.20
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9512
+Average Moves over the last 500 games: 47.52
+------------------------------------------
+--- After 550 episodes ---
+Average Score over the last 500 episodes: -463.94
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9465
+Average Moves over the last 500 games: 60.82
+------------------------------------------
+--- After 600 episodes ---
+Average Score over the last 500 episodes: -457.65
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9418
+Average Moves over the last 500 games: 43.50
+------------------------------------------
+--- After 650 episodes ---
+Average Score over the last 500 episodes: -442.68
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9371
+Average Moves over the last 500 games: 43.18
+------------------------------------------
+--- After 700 episodes ---
+Average Score over the last 500 episodes: -451.51
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9324
+Average Moves over the last 500 games: 64.80
+------------------------------------------
+--- After 750 episodes ---
+Average Score over the last 500 episodes: -452.13
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9277
+Average Moves over the last 500 games: 57.44
+------------------------------------------
+--- After 800 episodes ---
+Average Score over the last 500 episodes: -459.22
+Average Loss over the last 500 episodes: nan
+Highest Score so far: -42.20
+Current Epsilon: 0.9231
+Average Moves over the last 500 games: 50.54
+------------------------------------------
+--- After 850 episodes ---
+Average Score over the last 500 episodes: -443.24
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.9185
+Average Moves over the last 500 games: 60.78
+------------------------------------------
+--- After 900 episodes ---
+Average Score over the last 500 episodes: -450.12
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.9139
+Average Moves over the last 500 games: 36.76
+------------------------------------------
+--- After 950 episodes ---
+Average Score over the last 500 episodes: -467.30
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.9094
+Average Moves over the last 500 games: 49.24
+------------------------------------------
+--- After 1000 episodes ---
+Average Score over the last 500 episodes: -481.08
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.9048
+Average Moves over the last 500 games: 55.80
+------------------------------------------
+--- After 1050 episodes ---
+Average Score over the last 500 episodes: -473.15
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.9003
+Average Moves over the last 500 games: 54.90
+------------------------------------------
+--- After 1100 episodes ---
+Average Score over the last 500 episodes: -465.39
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8958
+Average Moves over the last 500 games: 59.50
+------------------------------------------
+--- After 1150 episodes ---
+Average Score over the last 500 episodes: -447.97
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8914
+Average Moves over the last 500 games: 40.26
+------------------------------------------
+--- After 1200 episodes ---
+Average Score over the last 500 episodes: -455.73
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8869
+Average Moves over the last 500 games: 44.92
+------------------------------------------
+--- After 1250 episodes ---
+Average Score over the last 500 episodes: -459.86
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8825
+Average Moves over the last 500 games: 44.38
+------------------------------------------
+--- After 1300 episodes ---
+Average Score over the last 500 episodes: -463.87
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8781
+Average Moves over the last 500 games: 49.62
+------------------------------------------
+--- After 1350 episodes ---
+Average Score over the last 500 episodes: -444.16
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8737
+Average Moves over the last 500 games: 27.56
+------------------------------------------
+--- After 1400 episodes ---
+Average Score over the last 500 episodes: -457.27
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8694
+Average Moves over the last 500 games: 44.28
+------------------------------------------
+--- After 1450 episodes ---
+Average Score over the last 500 episodes: -456.59
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8650
+Average Moves over the last 500 games: 27.48
+------------------------------------------
+--- After 1500 episodes ---
+Average Score over the last 500 episodes: -474.06
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8607
+Average Moves over the last 500 games: 51.42
+------------------------------------------
+--- After 1550 episodes ---
+Average Score over the last 500 episodes: -445.14
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8564
+Average Moves over the last 500 games: 27.76
+------------------------------------------
+--- After 1600 episodes ---
+Average Score over the last 500 episodes: -491.31
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8521
+Average Moves over the last 500 games: 48.72
+------------------------------------------
+--- After 1650 episodes ---
+Average Score over the last 500 episodes: -460.96
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8479
+Average Moves over the last 500 games: 37.22
+------------------------------------------
+--- After 1700 episodes ---
+Average Score over the last 500 episodes: -448.23
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8437
+Average Moves over the last 500 games: 24.30
+------------------------------------------
+--- After 1750 episodes ---
+Average Score over the last 500 episodes: -468.03
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8394
+Average Moves over the last 500 games: 39.74
+------------------------------------------
+--- After 1800 episodes ---
+Average Score over the last 500 episodes: -470.73
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8353
+Average Moves over the last 500 games: 36.50
+------------------------------------------
+--- After 1850 episodes ---
+Average Score over the last 500 episodes: -456.68
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8311
+Average Moves over the last 500 games: 28.64
+------------------------------------------
+--- After 1900 episodes ---
+Average Score over the last 500 episodes: -455.95
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8270
+Average Moves over the last 500 games: 30.12
+------------------------------------------
+--- After 1950 episodes ---
+Average Score over the last 500 episodes: -446.10
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8228
+Average Moves over the last 500 games: 18.20
+------------------------------------------
+--- After 2000 episodes ---
+Average Score over the last 500 episodes: -455.76
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8187
+Average Moves over the last 500 games: 32.76
+------------------------------------------
+--- After 2050 episodes ---
+Average Score over the last 500 episodes: -464.78
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8146
+Average Moves over the last 500 games: 33.82
+------------------------------------------
+--- After 2100 episodes ---
+Average Score over the last 500 episodes: -460.10
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8106
+Average Moves over the last 500 games: 32.24
+------------------------------------------
+--- After 2150 episodes ---
+Average Score over the last 500 episodes: -469.57
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8065
+Average Moves over the last 500 games: 44.48
+------------------------------------------
+--- After 2200 episodes ---
+Average Score over the last 500 episodes: -449.94
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.8025
+Average Moves over the last 500 games: 27.78
+------------------------------------------
+--- After 2250 episodes ---
+Average Score over the last 500 episodes: -465.72
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7985
+Average Moves over the last 500 games: 31.98
+------------------------------------------
+--- After 2300 episodes ---
+Average Score over the last 500 episodes: -444.59
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7945
+Average Moves over the last 500 games: 30.70
+------------------------------------------
+--- After 2350 episodes ---
+Average Score over the last 500 episodes: -463.90
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7906
+Average Moves over the last 500 games: 29.22
+------------------------------------------
+--- After 2400 episodes ---
+Average Score over the last 500 episodes: -454.28
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7866
+Average Moves over the last 500 games: 24.84
+------------------------------------------
+--- After 2450 episodes ---
+Average Score over the last 500 episodes: -464.61
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7827
+Average Moves over the last 500 games: 33.30
+------------------------------------------
+--- After 2500 episodes ---
+Average Score over the last 500 episodes: -462.20
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7788
+Average Moves over the last 500 games: 28.80
+------------------------------------------
+--- After 2550 episodes ---
+Average Score over the last 500 episodes: -469.25
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7749
+Average Moves over the last 500 games: 22.72
+------------------------------------------
+--- After 2600 episodes ---
+Average Score over the last 500 episodes: -476.04
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7710
+Average Moves over the last 500 games: 26.82
+------------------------------------------
+--- After 2650 episodes ---
+Average Score over the last 500 episodes: -459.72
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7672
+Average Moves over the last 500 games: 21.64
+------------------------------------------
+--- After 2700 episodes ---
+Average Score over the last 500 episodes: -454.79
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7634
+Average Moves over the last 500 games: 21.66
+------------------------------------------
+--- After 2750 episodes ---
+Average Score over the last 500 episodes: -482.57
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7596
+Average Moves over the last 500 games: 27.50
+------------------------------------------
+--- After 2800 episodes ---
+Average Score over the last 500 episodes: -431.53
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7558
+Average Moves over the last 500 games: 24.32
+------------------------------------------
+--- After 2850 episodes ---
+Average Score over the last 500 episodes: -471.23
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7520
+Average Moves over the last 500 games: 27.46
+------------------------------------------
+--- After 2900 episodes ---
+Average Score over the last 500 episodes: -460.42
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7483
+Average Moves over the last 500 games: 30.58
+------------------------------------------
+--- After 2950 episodes ---
+Average Score over the last 500 episodes: -467.04
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7445
+Average Moves over the last 500 games: 26.98
+------------------------------------------
+--- After 3000 episodes ---
+Average Score over the last 500 episodes: -479.60
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7408
+Average Moves over the last 500 games: 34.04
+------------------------------------------
+--- After 3050 episodes ---
+Average Score over the last 500 episodes: -469.87
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7371
+Average Moves over the last 500 games: 26.28
+------------------------------------------
+--- After 3100 episodes ---
+Average Score over the last 500 episodes: -474.14
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7334
+Average Moves over the last 500 games: 25.62
+------------------------------------------
+--- After 3150 episodes ---
+Average Score over the last 500 episodes: -457.36
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7298
+Average Moves over the last 500 games: 21.82
+------------------------------------------
+--- After 3200 episodes ---
+Average Score over the last 500 episodes: -456.20
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7261
+Average Moves over the last 500 games: 24.64
+------------------------------------------
+--- After 3250 episodes ---
+Average Score over the last 500 episodes: -469.04
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7225
+Average Moves over the last 500 games: 23.80
+------------------------------------------
+--- After 3300 episodes ---
+Average Score over the last 500 episodes: -463.58
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7189
+Average Moves over the last 500 games: 23.64
+------------------------------------------
+--- After 3350 episodes ---
+Average Score over the last 500 episodes: -475.48
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7153
+Average Moves over the last 500 games: 28.18
+------------------------------------------
+--- After 3400 episodes ---
+Average Score over the last 500 episodes: -477.85
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7118
+Average Moves over the last 500 games: 33.72
+------------------------------------------
+--- After 3450 episodes ---
+Average Score over the last 500 episodes: -473.91
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7082
+Average Moves over the last 500 games: 22.88
+------------------------------------------
+--- After 3500 episodes ---
+Average Score over the last 500 episodes: -474.57
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7047
+Average Moves over the last 500 games: 24.90
+------------------------------------------
+--- After 3550 episodes ---
+Average Score over the last 500 episodes: -462.18
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.7012
+Average Moves over the last 500 games: 29.78
+------------------------------------------
+--- After 3600 episodes ---
+Average Score over the last 500 episodes: -441.37
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6977
+Average Moves over the last 500 games: 18.72
+------------------------------------------
+--- After 3650 episodes ---
+Average Score over the last 500 episodes: -497.35
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6942
+Average Moves over the last 500 games: 28.66
+------------------------------------------
+--- After 3700 episodes ---
+Average Score over the last 500 episodes: -462.68
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6907
+Average Moves over the last 500 games: 21.98
+------------------------------------------
+--- After 3750 episodes ---
+Average Score over the last 500 episodes: -463.57
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6873
+Average Moves over the last 500 games: 18.52
+------------------------------------------
+--- After 3800 episodes ---
+Average Score over the last 500 episodes: -474.49
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6838
+Average Moves over the last 500 games: 19.54
+------------------------------------------
+--- After 3850 episodes ---
+Average Score over the last 500 episodes: -473.33
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6804
+Average Moves over the last 500 games: 23.52
+------------------------------------------
+--- After 3900 episodes ---
+Average Score over the last 500 episodes: -489.09
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6770
+Average Moves over the last 500 games: 25.70
+------------------------------------------
+--- After 3950 episodes ---
+Average Score over the last 500 episodes: -485.40
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6737
+Average Moves over the last 500 games: 26.24
+------------------------------------------
+--- After 4000 episodes ---
+Average Score over the last 500 episodes: -478.28
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6703
+Average Moves over the last 500 games: 20.98
+------------------------------------------
+--- After 4050 episodes ---
+Average Score over the last 500 episodes: -472.92
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6670
+Average Moves over the last 500 games: 19.02
+------------------------------------------
+--- After 4100 episodes ---
+Average Score over the last 500 episodes: -486.85
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6636
+Average Moves over the last 500 games: 21.30
+------------------------------------------
+--- After 4150 episodes ---
+Average Score over the last 500 episodes: -479.15
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6603
+Average Moves over the last 500 games: 20.12
+------------------------------------------
+--- After 4200 episodes ---
+Average Score over the last 500 episodes: -506.83
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6570
+Average Moves over the last 500 games: 27.54
+------------------------------------------
+--- After 4250 episodes ---
+Average Score over the last 500 episodes: -449.66
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6538
+Average Moves over the last 500 games: 25.58
+------------------------------------------
+--- After 4300 episodes ---
+Average Score over the last 500 episodes: -463.06
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6505
+Average Moves over the last 500 games: 22.76
+------------------------------------------
+--- After 4350 episodes ---
+Average Score over the last 500 episodes: -462.60
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6473
+Average Moves over the last 500 games: 23.02
+------------------------------------------
+--- After 4400 episodes ---
+Average Score over the last 500 episodes: -483.60
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6440
+Average Moves over the last 500 games: 22.58
+------------------------------------------
+--- After 4450 episodes ---
+Average Score over the last 500 episodes: -484.71
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6408
+Average Moves over the last 500 games: 23.30
+------------------------------------------
+--- After 4500 episodes ---
+Average Score over the last 500 episodes: -477.70
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6376
+Average Moves over the last 500 games: 22.18
+------------------------------------------
+--- After 4550 episodes ---
+Average Score over the last 500 episodes: -501.09
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6344
+Average Moves over the last 500 games: 26.52
+------------------------------------------
+--- After 4600 episodes ---
+Average Score over the last 500 episodes: -471.26
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6313
+Average Moves over the last 500 games: 20.02
+------------------------------------------
+--- After 4650 episodes ---
+Average Score over the last 500 episodes: -481.16
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6281
+Average Moves over the last 500 games: 23.20
+------------------------------------------
+--- After 4700 episodes ---
+Average Score over the last 500 episodes: -476.79
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6250
+Average Moves over the last 500 games: 22.48
+------------------------------------------
+--- After 4750 episodes ---
+Average Score over the last 500 episodes: -468.30
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6219
+Average Moves over the last 500 games: 19.20
+------------------------------------------
+--- After 4800 episodes ---
+Average Score over the last 500 episodes: -476.54
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6188
+Average Moves over the last 500 games: 22.38
+------------------------------------------
+--- After 4850 episodes ---
+Average Score over the last 500 episodes: -502.04
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6157
+Average Moves over the last 500 games: 28.96
+------------------------------------------
+--- After 4900 episodes ---
+Average Score over the last 500 episodes: -479.58
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6126
+Average Moves over the last 500 games: 22.24
+------------------------------------------
+--- After 4950 episodes ---
+Average Score over the last 500 episodes: -478.48
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6096
+Average Moves over the last 500 games: 17.60
+------------------------------------------
+--- After 5000 episodes ---
+Average Score over the last 500 episodes: -482.60
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6065
+Average Moves over the last 500 games: 20.02
+------------------------------------------
+--- After 5050 episodes ---
+Average Score over the last 500 episodes: -501.10
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6035
+Average Moves over the last 500 games: 23.36
+------------------------------------------
+--- After 5100 episodes ---
+Average Score over the last 500 episodes: -491.48
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.6005
+Average Moves over the last 500 games: 22.96
+------------------------------------------
+--- After 5150 episodes ---
+Average Score over the last 500 episodes: -482.17
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5975
+Average Moves over the last 500 games: 18.12
+------------------------------------------
+--- After 5200 episodes ---
+Average Score over the last 500 episodes: -488.52
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5945
+Average Moves over the last 500 games: 23.22
+------------------------------------------
+--- After 5250 episodes ---
+Average Score over the last 500 episodes: -465.86
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5915
+Average Moves over the last 500 games: 16.24
+------------------------------------------
+--- After 5300 episodes ---
+Average Score over the last 500 episodes: -469.87
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5886
+Average Moves over the last 500 games: 13.12
+------------------------------------------
+--- After 5350 episodes ---
+Average Score over the last 500 episodes: -503.50
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5857
+Average Moves over the last 500 games: 23.42
+------------------------------------------
+--- After 5400 episodes ---
+Average Score over the last 500 episodes: -500.52
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5827
+Average Moves over the last 500 games: 22.82
+------------------------------------------
+--- After 5450 episodes ---
+Average Score over the last 500 episodes: -484.81
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5798
+Average Moves over the last 500 games: 16.66
+------------------------------------------
+--- After 5500 episodes ---
+Average Score over the last 500 episodes: -473.43
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5769
+Average Moves over the last 500 games: 14.28
+------------------------------------------
+--- After 5550 episodes ---
+Average Score over the last 500 episodes: -483.31
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5741
+Average Moves over the last 500 games: 16.72
+------------------------------------------
+--- After 5600 episodes ---
+Average Score over the last 500 episodes: -486.94
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5712
+Average Moves over the last 500 games: 20.56
+------------------------------------------
+--- After 5650 episodes ---
+Average Score over the last 500 episodes: -474.48
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5683
+Average Moves over the last 500 games: 20.56
+------------------------------------------
+--- After 5700 episodes ---
+Average Score over the last 500 episodes: -472.78
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5655
+Average Moves over the last 500 games: 15.98
+------------------------------------------
+--- After 5750 episodes ---
+Average Score over the last 500 episodes: -451.72
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5627
+Average Moves over the last 500 games: 12.42
+------------------------------------------
+--- After 5800 episodes ---
+Average Score over the last 500 episodes: -459.13
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5599
+Average Moves over the last 500 games: 11.90
+------------------------------------------
+--- After 5850 episodes ---
+Average Score over the last 500 episodes: -476.09
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5571
+Average Moves over the last 500 games: 16.86
+------------------------------------------
+--- After 5900 episodes ---
+Average Score over the last 500 episodes: -486.24
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5543
+Average Moves over the last 500 games: 18.76
+------------------------------------------
+--- After 5950 episodes ---
+Average Score over the last 500 episodes: -482.46
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5515
+Average Moves over the last 500 games: 17.82
+------------------------------------------
+--- After 6000 episodes ---
+Average Score over the last 500 episodes: -486.70
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5488
+Average Moves over the last 500 games: 26.98
+------------------------------------------
+--- After 6050 episodes ---
+Average Score over the last 500 episodes: -472.85
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5461
+Average Moves over the last 500 games: 17.66
+------------------------------------------
+--- After 6100 episodes ---
+Average Score over the last 500 episodes: -473.16
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5433
+Average Moves over the last 500 games: 19.56
+------------------------------------------
+--- After 6150 episodes ---
+Average Score over the last 500 episodes: -501.63
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5406
+Average Moves over the last 500 games: 20.08
+------------------------------------------
+--- After 6200 episodes ---
+Average Score over the last 500 episodes: -487.43
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5379
+Average Moves over the last 500 games: 19.86
+------------------------------------------
+--- After 6250 episodes ---
+Average Score over the last 500 episodes: -460.31
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5352
+Average Moves over the last 500 games: 15.94
+------------------------------------------
+--- After 6300 episodes ---
+Average Score over the last 500 episodes: -457.26
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5326
+Average Moves over the last 500 games: 13.60
+------------------------------------------
+--- After 6350 episodes ---
+Average Score over the last 500 episodes: -469.12
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5299
+Average Moves over the last 500 games: 12.78
+------------------------------------------
+--- After 6400 episodes ---
+Average Score over the last 500 episodes: -493.81
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5273
+Average Moves over the last 500 games: 22.72
+------------------------------------------
+--- After 6450 episodes ---
+Average Score over the last 500 episodes: -482.47
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5246
+Average Moves over the last 500 games: 17.70
+------------------------------------------
+--- After 6500 episodes ---
+Average Score over the last 500 episodes: -478.47
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5220
+Average Moves over the last 500 games: 15.48
+------------------------------------------
+--- After 6550 episodes ---
+Average Score over the last 500 episodes: -469.25
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5194
+Average Moves over the last 500 games: 18.52
+------------------------------------------
+--- After 6600 episodes ---
+Average Score over the last 500 episodes: -463.35
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5168
+Average Moves over the last 500 games: 10.92
+------------------------------------------
+--- After 6650 episodes ---
+Average Score over the last 500 episodes: -452.96
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5143
+Average Moves over the last 500 games: 6.96
+------------------------------------------
+--- After 6700 episodes ---
+Average Score over the last 500 episodes: -451.47
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5117
+Average Moves over the last 500 games: 8.26
+------------------------------------------
+--- After 6750 episodes ---
+Average Score over the last 500 episodes: -451.91
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5091
+Average Moves over the last 500 games: 7.34
+------------------------------------------
+--- After 6800 episodes ---
+Average Score over the last 500 episodes: -451.12
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5066
+Average Moves over the last 500 games: 6.56
+------------------------------------------
+--- After 6850 episodes ---
+Average Score over the last 500 episodes: -454.20
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5041
+Average Moves over the last 500 games: 7.42
+------------------------------------------
+--- After 6900 episodes ---
+Average Score over the last 500 episodes: -487.75
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.5016
+Average Moves over the last 500 games: 17.12
+------------------------------------------
+--- After 6950 episodes ---
+Average Score over the last 500 episodes: -470.98
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4991
+Average Moves over the last 500 games: 11.62
+------------------------------------------
+--- After 7000 episodes ---
+Average Score over the last 500 episodes: -473.90
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4966
+Average Moves over the last 500 games: 14.18
+------------------------------------------
+--- After 7050 episodes ---
+Average Score over the last 500 episodes: -471.00
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4941
+Average Moves over the last 500 games: 12.58
+------------------------------------------
+--- After 7100 episodes ---
+Average Score over the last 500 episodes: -474.84
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4916
+Average Moves over the last 500 games: 14.58
+------------------------------------------
+--- After 7150 episodes ---
+Average Score over the last 500 episodes: -454.62
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4892
+Average Moves over the last 500 games: 15.60
+------------------------------------------
+--- After 7200 episodes ---
+Average Score over the last 500 episodes: -483.96
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4867
+Average Moves over the last 500 games: 17.64
+------------------------------------------
+--- After 7250 episodes ---
+Average Score over the last 500 episodes: -481.52
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4843
+Average Moves over the last 500 games: 15.20
+------------------------------------------
+--- After 7300 episodes ---
+Average Score over the last 500 episodes: -491.72
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4819
+Average Moves over the last 500 games: 17.00
+------------------------------------------
+--- After 7350 episodes ---
+Average Score over the last 500 episodes: -494.62
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4795
+Average Moves over the last 500 games: 25.18
+------------------------------------------
+--- After 7400 episodes ---
+Average Score over the last 500 episodes: -481.82
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4771
+Average Moves over the last 500 games: 15.78
+------------------------------------------
+--- After 7450 episodes ---
+Average Score over the last 500 episodes: -483.44
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4747
+Average Moves over the last 500 games: 16.60
+------------------------------------------
+--- After 7500 episodes ---
+Average Score over the last 500 episodes: -479.57
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4723
+Average Moves over the last 500 games: 16.10
+------------------------------------------
+--- After 7550 episodes ---
+Average Score over the last 500 episodes: -472.35
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4700
+Average Moves over the last 500 games: 15.50
+------------------------------------------
+--- After 7600 episodes ---
+Average Score over the last 500 episodes: -502.44
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4676
+Average Moves over the last 500 games: 17.64
+------------------------------------------
+--- After 7650 episodes ---
+Average Score over the last 500 episodes: -519.38
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4653
+Average Moves over the last 500 games: 20.40
+------------------------------------------
+--- After 7700 episodes ---
+Average Score over the last 500 episodes: -495.59
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4630
+Average Moves over the last 500 games: 17.26
+------------------------------------------
+--- After 7750 episodes ---
+Average Score over the last 500 episodes: -515.86
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4607
+Average Moves over the last 500 games: 19.78
+------------------------------------------
+--- After 7800 episodes ---
+Average Score over the last 500 episodes: -490.28
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4584
+Average Moves over the last 500 games: 16.56
+------------------------------------------
+--- After 7850 episodes ---
+Average Score over the last 500 episodes: -491.40
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4561
+Average Moves over the last 500 games: 16.96
+------------------------------------------
+--- After 7900 episodes ---
+Average Score over the last 500 episodes: -479.67
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4538
+Average Moves over the last 500 games: 12.74
+------------------------------------------
+--- After 7950 episodes ---
+Average Score over the last 500 episodes: -479.15
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4516
+Average Moves over the last 500 games: 17.46
+------------------------------------------
+--- After 8000 episodes ---
+Average Score over the last 500 episodes: -475.74
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4493
+Average Moves over the last 500 games: 15.78
+------------------------------------------
+--- After 8050 episodes ---
+Average Score over the last 500 episodes: -495.35
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4471
+Average Moves over the last 500 games: 14.86
+------------------------------------------
+--- After 8100 episodes ---
+Average Score over the last 500 episodes: -493.56
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4448
+Average Moves over the last 500 games: 16.56
+------------------------------------------
+--- After 8150 episodes ---
+Average Score over the last 500 episodes: -477.41
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4426
+Average Moves over the last 500 games: 13.74
+------------------------------------------
+--- After 8200 episodes ---
+Average Score over the last 500 episodes: -471.37
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4404
+Average Moves over the last 500 games: 13.68
+------------------------------------------
+--- After 8250 episodes ---
+Average Score over the last 500 episodes: -478.49
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4382
+Average Moves over the last 500 games: 14.72
+------------------------------------------
+--- After 8300 episodes ---
+Average Score over the last 500 episodes: -497.19
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4360
+Average Moves over the last 500 games: 18.66
+------------------------------------------
+--- After 8350 episodes ---
+Average Score over the last 500 episodes: -465.59
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4339
+Average Moves over the last 500 games: 8.90
+------------------------------------------
+--- After 8400 episodes ---
+Average Score over the last 500 episodes: -463.20
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4317
+Average Moves over the last 500 games: 10.22
+------------------------------------------
+--- After 8450 episodes ---
+Average Score over the last 500 episodes: -452.95
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4295
+Average Moves over the last 500 games: 6.70
+------------------------------------------
+--- After 8500 episodes ---
+Average Score over the last 500 episodes: -455.45
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4274
+Average Moves over the last 500 games: 7.26
+------------------------------------------
+--- After 8550 episodes ---
+Average Score over the last 500 episodes: -452.21
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4253
+Average Moves over the last 500 games: 5.90
+------------------------------------------
+--- After 8600 episodes ---
+Average Score over the last 500 episodes: -500.53
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4231
+Average Moves over the last 500 games: 17.66
+------------------------------------------
+--- After 8650 episodes ---
+Average Score over the last 500 episodes: -495.45
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4210
+Average Moves over the last 500 games: 15.06
+------------------------------------------
+--- After 8700 episodes ---
+Average Score over the last 500 episodes: -492.08
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4189
+Average Moves over the last 500 games: 14.98
+------------------------------------------
+--- After 8750 episodes ---
+Average Score over the last 500 episodes: -512.42
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4168
+Average Moves over the last 500 games: 20.00
+------------------------------------------
+--- After 8800 episodes ---
+Average Score over the last 500 episodes: -485.04
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4148
+Average Moves over the last 500 games: 14.04
+------------------------------------------
+--- After 8850 episodes ---
+Average Score over the last 500 episodes: -473.76
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4127
+Average Moves over the last 500 games: 11.60
+------------------------------------------
+--- After 8900 episodes ---
+Average Score over the last 500 episodes: -483.50
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4106
+Average Moves over the last 500 games: 14.40
+------------------------------------------
+--- After 8950 episodes ---
+Average Score over the last 500 episodes: -485.47
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4086
+Average Moves over the last 500 games: 12.86
+------------------------------------------
+--- After 9000 episodes ---
+Average Score over the last 500 episodes: -480.50
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4066
+Average Moves over the last 500 games: 13.04
+------------------------------------------
+--- After 9050 episodes ---
+Average Score over the last 500 episodes: -520.70
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4045
+Average Moves over the last 500 games: 17.56
+------------------------------------------
+--- After 9100 episodes ---
+Average Score over the last 500 episodes: -505.83
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4025
+Average Moves over the last 500 games: 21.90
+------------------------------------------
+--- After 9150 episodes ---
+Average Score over the last 500 episodes: -513.29
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.4005
+Average Moves over the last 500 games: 18.74
+------------------------------------------
+--- After 9200 episodes ---
+Average Score over the last 500 episodes: -508.24
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3985
+Average Moves over the last 500 games: 17.22
+------------------------------------------
+--- After 9250 episodes ---
+Average Score over the last 500 episodes: -480.83
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3965
+Average Moves over the last 500 games: 13.86
+------------------------------------------
+--- After 9300 episodes ---
+Average Score over the last 500 episodes: -479.72
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3945
+Average Moves over the last 500 games: 13.56
+------------------------------------------
+--- After 9350 episodes ---
+Average Score over the last 500 episodes: -478.83
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3926
+Average Moves over the last 500 games: 13.86
+------------------------------------------
+--- After 9400 episodes ---
+Average Score over the last 500 episodes: -480.50
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3906
+Average Moves over the last 500 games: 14.44
+------------------------------------------
+--- After 9450 episodes ---
+Average Score over the last 500 episodes: -476.20
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3887
+Average Moves over the last 500 games: 11.56
+------------------------------------------
+--- After 9500 episodes ---
+Average Score over the last 500 episodes: -485.16
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3867
+Average Moves over the last 500 games: 14.38
+------------------------------------------
+--- After 9550 episodes ---
+Average Score over the last 500 episodes: -488.49
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3848
+Average Moves over the last 500 games: 17.28
+------------------------------------------
+--- After 9600 episodes ---
+Average Score over the last 500 episodes: -472.93
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3829
+Average Moves over the last 500 games: 11.10
+------------------------------------------
+--- After 9650 episodes ---
+Average Score over the last 500 episodes: -504.20
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3810
+Average Moves over the last 500 games: 19.02
+------------------------------------------
+--- After 9700 episodes ---
+Average Score over the last 500 episodes: -506.61
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3791
+Average Moves over the last 500 games: 16.30
+------------------------------------------
+--- After 9750 episodes ---
+Average Score over the last 500 episodes: -516.50
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3772
+Average Moves over the last 500 games: 18.16
+------------------------------------------
+--- After 9800 episodes ---
+Average Score over the last 500 episodes: -516.27
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3753
+Average Moves over the last 500 games: 21.92
+------------------------------------------
+--- After 9850 episodes ---
+Average Score over the last 500 episodes: -460.24
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3734
+Average Moves over the last 500 games: 8.76
+------------------------------------------
+--- After 9900 episodes ---
+Average Score over the last 500 episodes: -458.22
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3716
+Average Moves over the last 500 games: 6.38
+------------------------------------------
+--- After 9950 episodes ---
+Average Score over the last 500 episodes: -458.12
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3697
+Average Moves over the last 500 games: 6.62
+------------------------------------------
+--- After 10000 episodes ---
+Average Score over the last 500 episodes: -458.89
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3679
+Average Moves over the last 500 games: 5.92
+------------------------------------------
+--- After 10050 episodes ---
+Average Score over the last 500 episodes: -452.68
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3660
+Average Moves over the last 500 games: 5.22
+------------------------------------------
+--- After 10100 episodes ---
+Average Score over the last 500 episodes: -455.93
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3642
+Average Moves over the last 500 games: 6.14
+------------------------------------------
+--- After 10150 episodes ---
+Average Score over the last 500 episodes: -454.89
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3624
+Average Moves over the last 500 games: 5.88
+------------------------------------------
+--- After 10200 episodes ---
+Average Score over the last 500 episodes: -455.83
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3606
+Average Moves over the last 500 games: 6.06
+------------------------------------------
+--- After 10250 episodes ---
+Average Score over the last 500 episodes: -455.23
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3588
+Average Moves over the last 500 games: 6.12
+------------------------------------------
+--- After 10300 episodes ---
+Average Score over the last 500 episodes: -452.00
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3570
+Average Moves over the last 500 games: 5.42
+------------------------------------------
+--- After 10350 episodes ---
+Average Score over the last 500 episodes: -453.94
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3552
+Average Moves over the last 500 games: 6.20
+------------------------------------------
+--- After 10400 episodes ---
+Average Score over the last 500 episodes: -451.68
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3534
+Average Moves over the last 500 games: 5.64
+------------------------------------------
+--- After 10450 episodes ---
+Average Score over the last 500 episodes: -452.23
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3517
+Average Moves over the last 500 games: 5.06
+------------------------------------------
+--- After 10500 episodes ---
+Average Score over the last 500 episodes: -463.55
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3499
+Average Moves over the last 500 games: 7.26
+------------------------------------------
+--- After 10550 episodes ---
+Average Score over the last 500 episodes: -474.05
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3482
+Average Moves over the last 500 games: 11.88
+------------------------------------------
+--- After 10600 episodes ---
+Average Score over the last 500 episodes: -475.42
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3464
+Average Moves over the last 500 games: 10.58
+------------------------------------------
+--- After 10650 episodes ---
+Average Score over the last 500 episodes: -461.20
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3447
+Average Moves over the last 500 games: 6.18
+------------------------------------------
+--- After 10700 episodes ---
+Average Score over the last 500 episodes: -453.21
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3430
+Average Moves over the last 500 games: 5.72
+------------------------------------------
+--- After 10750 episodes ---
+Average Score over the last 500 episodes: -452.92
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3413
+Average Moves over the last 500 games: 5.38
+------------------------------------------
+--- After 10800 episodes ---
+Average Score over the last 500 episodes: -451.39
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3396
+Average Moves over the last 500 games: 5.30
+------------------------------------------
+--- After 10850 episodes ---
+Average Score over the last 500 episodes: -497.61
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3379
+Average Moves over the last 500 games: 17.32
+------------------------------------------
+--- After 10900 episodes ---
+Average Score over the last 500 episodes: -509.62
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3362
+Average Moves over the last 500 games: 16.60
+------------------------------------------
+--- After 10950 episodes ---
+Average Score over the last 500 episodes: -525.59
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3345
+Average Moves over the last 500 games: 21.26
+------------------------------------------
+--- After 11000 episodes ---
+Average Score over the last 500 episodes: -522.05
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3329
+Average Moves over the last 500 games: 16.88
+------------------------------------------
+--- After 11050 episodes ---
+Average Score over the last 500 episodes: -504.30
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3312
+Average Moves over the last 500 games: 14.96
+------------------------------------------
+--- After 11100 episodes ---
+Average Score over the last 500 episodes: -474.94
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3295
+Average Moves over the last 500 games: 9.40
+------------------------------------------
+--- After 11150 episodes ---
+Average Score over the last 500 episodes: -510.31
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3279
+Average Moves over the last 500 games: 18.28
+------------------------------------------
+--- After 11200 episodes ---
+Average Score over the last 500 episodes: -508.33
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3263
+Average Moves over the last 500 games: 16.90
+------------------------------------------
+--- After 11250 episodes ---
+Average Score over the last 500 episodes: -497.53
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3246
+Average Moves over the last 500 games: 12.72
+------------------------------------------
+--- After 11300 episodes ---
+Average Score over the last 500 episodes: -509.05
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3230
+Average Moves over the last 500 games: 14.74
+------------------------------------------
+--- After 11350 episodes ---
+Average Score over the last 500 episodes: -528.76
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3214
+Average Moves over the last 500 games: 17.62
+------------------------------------------
+--- After 11400 episodes ---
+Average Score over the last 500 episodes: -520.77
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3198
+Average Moves over the last 500 games: 16.72
+------------------------------------------
+--- After 11450 episodes ---
+Average Score over the last 500 episodes: -540.40
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3182
+Average Moves over the last 500 games: 19.84
+------------------------------------------
+--- After 11500 episodes ---
+Average Score over the last 500 episodes: -518.71
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3166
+Average Moves over the last 500 games: 16.28
+------------------------------------------
+--- After 11550 episodes ---
+Average Score over the last 500 episodes: -508.17
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3150
+Average Moves over the last 500 games: 14.94
+------------------------------------------
+--- After 11600 episodes ---
+Average Score over the last 500 episodes: -561.21
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3135
+Average Moves over the last 500 games: 24.08
+------------------------------------------
+--- After 11650 episodes ---
+Average Score over the last 500 episodes: -511.42
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3119
+Average Moves over the last 500 games: 15.40
+------------------------------------------
+--- After 11700 episodes ---
+Average Score over the last 500 episodes: -511.89
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3103
+Average Moves over the last 500 games: 16.28
+------------------------------------------
+--- After 11750 episodes ---
+Average Score over the last 500 episodes: -511.77
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3088
+Average Moves over the last 500 games: 15.48
+------------------------------------------
+--- After 11800 episodes ---
+Average Score over the last 500 episodes: -538.08
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3073
+Average Moves over the last 500 games: 19.76
+------------------------------------------
+--- After 11850 episodes ---
+Average Score over the last 500 episodes: -490.62
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3057
+Average Moves over the last 500 games: 16.64
+------------------------------------------
+--- After 11900 episodes ---
+Average Score over the last 500 episodes: -516.37
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3042
+Average Moves over the last 500 games: 15.68
+------------------------------------------
+--- After 11950 episodes ---
+Average Score over the last 500 episodes: -504.44
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3027
+Average Moves over the last 500 games: 12.98
+------------------------------------------
+--- After 12000 episodes ---
+Average Score over the last 500 episodes: -516.73
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.3012
+Average Moves over the last 500 games: 16.52
+------------------------------------------
+--- After 12050 episodes ---
+Average Score over the last 500 episodes: -514.22
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2997
+Average Moves over the last 500 games: 21.60
+------------------------------------------
+--- After 12100 episodes ---
+Average Score over the last 500 episodes: -469.35
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2982
+Average Moves over the last 500 games: 12.88
+------------------------------------------
+--- After 12150 episodes ---
+Average Score over the last 500 episodes: -490.87
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2967
+Average Moves over the last 500 games: 15.12
+------------------------------------------
+--- After 12200 episodes ---
+Average Score over the last 500 episodes: -454.27
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2952
+Average Moves over the last 500 games: 6.30
+------------------------------------------
+--- After 12250 episodes ---
+Average Score over the last 500 episodes: -478.34
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2937
+Average Moves over the last 500 games: 13.40
+------------------------------------------
+--- After 12300 episodes ---
+Average Score over the last 500 episodes: -480.11
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2923
+Average Moves over the last 500 games: 16.26
+------------------------------------------
+--- After 12350 episodes ---
+Average Score over the last 500 episodes: -526.84
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2908
+Average Moves over the last 500 games: 18.76
+------------------------------------------
+--- After 12400 episodes ---
+Average Score over the last 500 episodes: -475.09
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2894
+Average Moves over the last 500 games: 8.34
+------------------------------------------
+--- After 12450 episodes ---
+Average Score over the last 500 episodes: -469.39
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2879
+Average Moves over the last 500 games: 7.34
+------------------------------------------
+--- After 12500 episodes ---
+Average Score over the last 500 episodes: -501.60
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2865
+Average Moves over the last 500 games: 15.36
+------------------------------------------
+--- After 12550 episodes ---
+Average Score over the last 500 episodes: -525.05
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2851
+Average Moves over the last 500 games: 16.94
+------------------------------------------
+--- After 12600 episodes ---
+Average Score over the last 500 episodes: -473.56
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2836
+Average Moves over the last 500 games: 8.18
+------------------------------------------
+--- After 12650 episodes ---
+Average Score over the last 500 episodes: -488.08
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2822
+Average Moves over the last 500 games: 15.78
+------------------------------------------
+--- After 12700 episodes ---
+Average Score over the last 500 episodes: -483.46
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2808
+Average Moves over the last 500 games: 21.76
+------------------------------------------
+--- After 12750 episodes ---
+Average Score over the last 500 episodes: -450.63
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2794
+Average Moves over the last 500 games: 4.88
+------------------------------------------
+--- After 12800 episodes ---
+Average Score over the last 500 episodes: -482.98
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2780
+Average Moves over the last 500 games: 9.96
+------------------------------------------
+--- After 12850 episodes ---
+Average Score over the last 500 episodes: -494.39
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2766
+Average Moves over the last 500 games: 21.74
+------------------------------------------
+--- After 12900 episodes ---
+Average Score over the last 500 episodes: -488.05
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2753
+Average Moves over the last 500 games: 16.74
+------------------------------------------
+--- After 12950 episodes ---
+Average Score over the last 500 episodes: -492.13
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2739
+Average Moves over the last 500 games: 18.70
+------------------------------------------
+--- After 13000 episodes ---
+Average Score over the last 500 episodes: -511.78
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2725
+Average Moves over the last 500 games: 17.76
+------------------------------------------
+--- After 13050 episodes ---
+Average Score over the last 500 episodes: -499.00
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2712
+Average Moves over the last 500 games: 18.18
+------------------------------------------
+--- After 13100 episodes ---
+Average Score over the last 500 episodes: -513.46
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2698
+Average Moves over the last 500 games: 29.78
+------------------------------------------
+--- After 13150 episodes ---
+Average Score over the last 500 episodes: -524.51
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2685
+Average Moves over the last 500 games: 15.86
+------------------------------------------
+--- After 13200 episodes ---
+Average Score over the last 500 episodes: -540.55
+Average Loss over the last 500 episodes: nan
+Highest Score so far: 76.10
+Current Epsilon: 0.2671
+Average Moves over the last 500 games: 16.72
+------------------------------------------

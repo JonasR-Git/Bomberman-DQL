@@ -210,6 +210,10 @@ class DQNAgent:
     def _build_model(self):
         model = Sequential()
         
+        model.add(Dense(512, input_dim=self.state_size))
+        model.add(LeakyReLU(alpha=0.001))
+        model.add(Dropout(0.2))
+
         model.add(Dense(256, input_dim=self.state_size))
         model.add(LeakyReLU(alpha=0.001))
         model.add(Dropout(0.2))
@@ -347,7 +351,7 @@ class DQNAgent:
         states = np.vstack(states)
         lr_scheduler = LearningRateScheduler(self.lr_schedule)
 
-        loss = self.model.fit(states, np.array(targets_f), epochs=3, verbose=0, callbacks=[lr_scheduler], use_multiprocessing=True)
+        loss = self.model.fit(states, np.array(targets_f), epochs=30, verbose=0, callbacks=[lr_scheduler], use_multiprocessing=True)
         K.clear_session()
         return loss
 
